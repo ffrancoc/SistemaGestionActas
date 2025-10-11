@@ -1,0 +1,74 @@
+{% extends 'base.html' %} 
+{% block title %}Página de Login{% endblock %} 
+{% block content %}
+<main class="container min-w-screen min-h-screen flex justify-center items-center">
+  <form class="card w-96 bg-base-100 shadow-none p-5 flex justify-center items-center" method="post" action="{% url 'procesar_login' %}">
+    {% csrf_token %}
+    <div class="flex flex-col justify-center items-center mb-5">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-15 text-purple-800">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z" />
+      </svg>
+
+      <h2 class="font-bold">SGA</h2>
+      <p class="text-gray-500">Sistema de Gestión de Actas</p>
+    </div>
+
+    <div class="mb-3 w-full flex justify-center">
+      <label class="input input-sm validator w-full">
+        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <g
+            stroke-linejoin="round"
+            stroke-linecap="round"
+            stroke-width="2.5"
+            fill="none"
+            stroke="currentColor"
+          >
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </g>
+        </svg>
+        <input
+          type="text"
+          required
+          placeholder="Usuario"
+          name="username"
+        />
+      </label>
+    </div>
+
+    <div class="mb-3 w-full flex justify-center">
+      <label class="input input-sm validator w-full">
+        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <g
+            stroke-linejoin="round"
+            stroke-linecap="round"
+            stroke-width="2.5"
+            fill="none"
+            stroke="currentColor"
+          >
+            <path
+              d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"
+            ></path>
+            <circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle>
+          </g>
+        </svg>
+        <input
+          type="password"
+          required
+          placeholder="Contraseña"
+          name="password"
+        />
+      </label>
+    </div>
+
+    <div class="flex w-full">
+      <button type="submit" class="btn btn-sm btn-soft btn-primary w-full">Ingresar</button>
+    </div>
+    {% for message in messages %} {% if message %}
+    <div role="alert" class="alert alert-error alert-soft my-6 w-full">
+      <span>{{ message }}</span>
+    </div>
+    {% endif %} {% endfor %}
+  </form>
+</main>
+{% endblock %}

@@ -1,0 +1,74 @@
+<dialog id="modalRegistrarPersona" class="modal">
+  <div class="modal-box w-11/12 ">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+    <h3 class="text-lg font-bold">Nuevo Registro</h3>
+    <form id="formPersona">
+        
+        <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
+            <legend class="fieldset-legend"></legend>
+
+            <label class="input input-sm w-full">
+              <span class="label">Nombre Completo</span>
+              <input type="text" name="nombre" maxlength="100" required/>
+            </label>
+
+            <label class="input input-sm w-full">
+              <span class="label">Apellido Completo</span>
+              <input type="text" name="apellido" maxlength="100" required/>
+            </label>
+
+            <label class="input input-sm w-full">
+              <span class="label">Lugar Nacimiento</span>
+              <input type="text" name="lugar_nacimiento" maxlength="200" required/>
+            </label>
+
+            <label class="input input-sm w-full">
+              <span class="label">Parroquia</span>
+              <input type="text" name="parroquia_pertenencia" maxlength="200" required/>
+            </label>
+
+
+            <label class="input input-sm w-full">
+              <span class="label">Fecha Nacimiento</span>
+              <input type="date" name="fecha_nacimiento" maxlength="100" required/>
+            </label>
+
+            <label class="select select-sm w-full">
+              <span class="label">Genero Persona</span>
+              <select name="genero" required>
+                <option value="" selected disabled>Seleccione una opción</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+              </select>
+            </label>
+
+            <label class="input input-sm w-full">
+              <span class="label">Nombre del Padre</span>
+              <input type="text" name="padre_nombre" maxlength="100" required/>
+            </label>
+
+             <label class="input input-sm w-full">
+              <span class="label">Apellido del Padre</span>
+              <input type="text" name="padre_apellido" maxlength="100" required/>
+            </label>
+            
+            <label class="input input-sm w-full">
+              <span class="label">Nombre del Madre</span>
+              <input type="text" name="madre_nombre" maxlength="100" required/>
+            </label>
+
+             <label class="input input-sm w-full">
+              <span class="label">Apellido del Madre</span>
+              <input type="text" name="madre_apellido" maxlength="100" required/>
+            </label>
+
+        </fieldset>
+        
+        <div class="mt-4">
+            <button type="submit" class="btn btn-sm btn-primary btn-block">Guardar</button>
+        </div>
+    </form>
+  </div>
+</dialog>

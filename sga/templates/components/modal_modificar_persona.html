@@ -1,0 +1,77 @@
+{% load static %}
+<dialog id="modalModificarPersona" class="modal">
+  <div class="modal-box w-11/12 ">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+    <h3 id="modalTitulo" class="text-lg font-bold">Modificar Registro</h3>
+    <form id="formModificarPersona">
+        
+        <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
+            <legend class="fieldset-legend"></legend>
+
+            <input type="text" class="input input-sm w-full" id="edit_id" name="edit_id" hidden required/>
+
+            <label class="input input-sm w-full">
+              <span class="label">Nombre Completo</span>
+              <input type="text" id="edit_nombre" name="edit_nombre" maxlength="100" required/>
+            </label>
+
+            <label class="input input-sm w-full">
+              <span class="label">Apellido Completo</span>
+              <input type="text" id="edit_apellido" name="edit_apellido" maxlength="100" required/>
+            </label>
+
+            <label class="input input-sm w-full">
+              <span class="label">Lugar Nacimiento</span>
+              <input type="text" id="edit_lugar_nacimiento" name="edit_lugar_nacimiento" maxlength="200" required/>
+            </label>
+
+            <label class="input input-sm w-full">
+              <span class="label">Parroquia</span>
+              <input type="text" id="edit_parroquia_pertenencia" name="edit_parroquia_pertenencia" maxlength="200" required/>
+            </label>
+
+            <label class="input input-sm w-full">
+              <span class="label">Fecha Nacimiento</span>
+              <input type="date" id="edit_fecha_nacimiento" name="edit_fecha_nacimiento" maxlength="100" required/>
+            </label>
+
+            <label class="select select-sm w-full">
+              <span class="label">Genero Persona  </span>
+              <select id="edit_genero" name="edit_genero" required>
+                <option value="" selected disabled>Seleccione una opción</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+              </select>
+            </label>
+
+            <label class="input input-sm w-full">
+              <span class="label">Nombre del Padre</span>
+              <input type="text" id="edit_padre_nombre" name="edit_padre_nombre" maxlength="100" required/>
+            </label>
+
+             <label class="input input-sm w-full">
+              <span class="label">Apellido del Padre</span>
+              <input type="text" id="edit_padre_apellido" name="edit_padre_apellido" maxlength="100" required/>
+            </label>
+            
+            <label class="input input-sm w-full">
+              <span class="label">Nombre del Madre</span>
+              <input type="text" id="edit_madre_nombre" name="edit_madre_nombre" maxlength="100" required/>
+            </label>
+
+             <label class="input input-sm w-full">
+              <span class="label">Apellido del Madre</span>
+              <input type="text" id="edit_madre_apellido" name="edit_madre_apellido" maxlength="100" required/>
+            </label>
+
+        </fieldset>
+        
+        <div class="mt-4">
+            <button type="submit" class="btn btn-sm btn-primary btn-block">Actualizar</button>
+        </div>
+    </form>
+  
+  </div>
+</dialog>

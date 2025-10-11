@@ -1,0 +1,59 @@
+# Entorno virtual
+venv/
+ENV/
+env/
+*.pyc
+__pycache__/
+
+# Archivos de configuración local
+*.sqlite3
+*.log
+*.pot
+*.mo
+*.env
+.env.*
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de migración
+*/migrations/*.py
+*/migrations/*.pyc
+!*/migrations/__init__.py
+
+# Archivos de compilación
+*.egg-info/
+*.egg/
+build/
+dist/
+
+# Archivos de IDE
+.vscode/
+.idea/
+*.swp
+
+# Archivos de media y estáticos generados
+/media/
+staticfiles/
+static_root/
+
+
+# Archivos de cobertura y pruebas
+htmlcov/
+.coverage
+.tox/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+
+# Otros
+*.exe
+
+# Archivos de Docker
+*.pid
+*.db
+*.bak
+*.tar
+*.gz

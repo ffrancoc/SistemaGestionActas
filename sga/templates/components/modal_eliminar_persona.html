@@ -1,0 +1,14 @@
+{% load static %}
+<dialog id="modalEliminarPersona" class="modal">
+  <div class="modal-box w-60 px-2 pb-2 pt-4 ">
+    <h3 class="font-bold text-lg text-center">¿Estás seguro?</h3>
+    <p class="text-center">Esta acción no se puede deshacer.</p>
+    <div class="modal-action flex justify-center gap-2">
+      <form method="dialog">
+        <button class="btn btn-sm btn-soft">Cancelar</button>
+      </form>
+      <button class="btn btn-sm btn-error" onclick="eliminarPersona()">Eliminar</button>
+    </div>
+  </div>
+
+</dialog>

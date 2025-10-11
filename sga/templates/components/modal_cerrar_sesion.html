@@ -1,0 +1,9 @@
+<dialog id="modalCerrarSesion" class="modal">
+  <div class="modal-box w-50 px-2 pb-2 pt-4">
+    <p class="text-sm font-semibold text-center">¿Desea cerrar la sesión?</p>
+    <div class="modal-action justify-center">
+      <form method="dialog"><button class="btn btn-sm btn-soft">No</button></form>
+      <a class="btn btn-sm btn-error" href="{% url 'cerrar_sesion' %}">Si</a>
+    </div>
+  </div>
+</dialog>

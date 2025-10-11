@@ -1,0 +1,81 @@
+<div class="overflow-auto">
+    <table class="table table-xs table-bordered border border-base-300 w-full">
+        <thead>
+            <tr>
+                <th>Nombre Completo</th>
+                <th class="hidden md:table-cell">Lugar Nacimiento</th>
+                <th class="hidden md:table-cell">Parroquia</th>
+                <th>Fecha Nacimiento</th>
+                <th class="hidden md:table-cell">Info Madre</th>
+                <th class="hidden md:table-cell">Info Padre</th>
+                <th class="hidden lg:table-cell">Fecha Registro</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if lista_personas|length > 0 %}
+                {% for persona in lista_personas %}
+                <tr>
+                    <td>{{ persona.nombre }} {{ persona.apellido }}</td>
+                    <td class="hidden md:table-cell">{{ persona.lugar_nacimiento }}</td>
+                    <td class="hidden md:table-cell">{{ persona.parroquia_pertenencia }}</td>
+                    <td>{{ persona.fecha_nacimiento|date:"d/m/Y" }}</td>
+                    <td class="hidden md:table-cell">{{ persona.madre_nombre }} {{ persona.madre_apellido }}</td>
+                    <td class="hidden md:table-cell">{{ persona.padre_nombre }} {{ persona.padre_apellido }}</td>
+                    <td class="hidden lg:table-cell">{{ persona.creacion|date:"d/m/Y"}}</td>
+                    <td>
+                        <div class="flex">
+                            <button class="btn btn-xs btn-link" onclick="mostrarPersonaDetalles({{ persona.id }})">+Info</button>
+                            <button class="btn btn-xs btn-link" data-persona-id="{{ persona.id }}"  onclick="mostrarModificarPersona(this)">Editar</button>
+                            <button class="btn btn-xs btn-link" data-persona-id="{{ persona.id }}" onclick="mostrarEliminarPersona(this)">Eliminar</button>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="8" class="py-5 text-base-50">
+                    <div class="flex flex-col items-center justify-center w-full py-12">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 13.5h3.86a2.25 2.25 0 0 1 2.012 1.244l.256.512a2.25 2.25 0 0 0 2.013 1.244h3.218a2.25 2.25 0 0 0 2.013-1.244l.256-.512a2.25 2.25 0 0 1 2.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 0 0-2.15-1.588H6.911a2.25 2.25 0 0 0-2.15 1.588L2.35 13.177a2.25 2.25 0 0 0-.1.661Z" />
+                    </svg>
+                    <span class="mt-2 text-md">No hay registros para mostrar</span>
+                    </div>
+                </td>
+            </tr>
+
+            {% endif %}
+        </tbody>
+    </table>
+      {% if lista_personas.has_other_pages %}
+        <div class="flex flex-col items-center justify-center mt-4">
+            <p class="text-gray-500 text-sm mb-2">Mostrando {{lista_personas|length}}/{{lista_personas.paginator.count}}</p>
+
+            <div class="join flex">
+                {% if lista_personas.has_previous %}
+                <a hx-get="{% url 'tabla_personas' %}?page={{ lista_personas.previous_page_number }}&q={{ filtro }}&limit={{ lista_personas.paginator.per_page }}"
+                    hx-target="#tabla"
+                    class="join-item btn btn-sm">«</a>
+                {% endif %}
+    
+                {% for num in lista_personas.paginator.page_range %}
+                {% if lista_personas.number == num %}
+                    <button class="join-item btn btn-soft btn-sm btn-primary">{{ num }}</button>
+                {% else %}
+                    <a hx-get="{% url 'tabla_personas' %}?page={{ num }}&q={{ filtro }}&limit={{ lista_personas.paginator.per_page }}"
+                    hx-target="#tabla"
+                    class="join-item btn btn-sm">{{ num }}</a>
+                {% endif %}
+                {% endfor %}
+    
+                {% if lista_personas.has_next %}
+                <a hx-get="{% url 'tabla_personas' %}?page={{ lista_personas.next_page_number }}&q={{ filtro }}&limit={{ lista_personas.paginator.per_page }}"
+                    hx-target="#tabla"
+                    class="join-item btn btn-sm">»</a>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
+
+  </div>

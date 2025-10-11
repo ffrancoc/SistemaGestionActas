@@ -1,0 +1,82 @@
+{% extends 'base.html' %} 
+{% block title %}Página de Inicio{% endblock %} 
+{% block content %}
+<main class="container bg-base-50 flex flex-col min-w-screen min-h-screen">
+  {% include 'partials/navbar.html' %}
+ 
+  
+
+  <div class="hero flex flex-grow flex-col">
+  <div class="hero-content flex-grow flex-col lg:flex-row">
+    {% load static %}
+      <img src="{% static "img/iglesia-icon.svg" %}" alt="iglesia"  class="w-64 h-64" />
+    <div>
+      <h1 class="text-5xl font-bold text-center">Sistema de Gestión de Actas</h1>
+      <p class="py-6 text-center sm:text-start">
+        Gestiona y administra actas sacramentales de bautismos, comuniones, confirmaciones y matrimonios con claridad, seguridad y sentido. Cada registro es más que un dato: es memoria viva de fe, comunidad y dignidad.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="flex items-center flex-wrap justify-center w-full pb-32">
+    <div class="stats stats-vertical lg:stats-horizontal shadow">
+  <div class="stat flex flex-col justify-center items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-secondary">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+    </svg>
+    
+    <div class="stat-title text-lg text-black">Personas</div>
+    <div class="stat-desc text-lg">{{ count_personas }}</div>
+  </div>
+
+  <div class="stat flex flex-col justify-center items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-secondary">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+    </svg>
+    
+    <div class="stat-title text-lg text-lg text-black">Bautismos</div>
+    <div class="stat-desc text-lg">0</div>
+  </div>
+
+  <div class="stat flex flex-col justify-center items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-secondary">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+    </svg>
+    
+    <div class="stat-title text-lg text-lg text-black">Comuniones</div>
+    <div class="stat-desc text-lg">0</div>
+  </div>
+
+  <div class="stat flex flex-col justify-center items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-secondary">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+    </svg>
+    
+    <div class="stat-title text-lg text-lg text-black">Confirmaciones</div>
+    <div class="stat-desc text-lg">0</div>
+  </div>
+
+  <div class="stat flex flex-col justify-center items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-secondary">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+    </svg>
+    
+    <div class="stat-title text-lg text-lg text-black">Matrimonios</div>
+    <div class="stat-desc text-lg">0</div>
+  </div>
+
+  <div class="stat flex flex-col justify-center items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-secondary">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+    </svg>
+    
+    <div class="stat-title text-lg text-lg text-black">Usuarios</div>
+    <div class="stat-desc text-lg">0</div>
+  </div>
+  
+</div>
+  </div>
+</main>
+{% endblock %}
+
