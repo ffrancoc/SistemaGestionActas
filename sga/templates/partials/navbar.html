@@ -1,4 +1,4 @@
-<div class="navbar bg-base-200 shadow-sm">
+<div class="navbar fixed top-0 w-full z-50 bg-base-200 shadow-sm">
   <div class="navbar-start">
     <div class="dropdown">
       <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
@@ -8,8 +8,7 @@
         tabindex="0"
         class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
         <li><a href="{% url 'mostrar_home' %}" class="{% if request.path == '/sga/home/' %} text-primary underline {% endif %}">Home</a></li>
-        <li><a href="{% url 'mostrar_personas' %}" class="{% if request.path == '/sga/personas/' %} text-primary underline {% endif %}">Personas</a></li>
-        <li><a href="{% url 'mostrar_bautismos' %}" class="{% if request.path == '/sga/bautismos/' %} text-primary underline {% endif %}">Bautismos</a></li>
+        <li><a href="{% url 'mostrar_registros' %}" class="{% if request.path == '/sga/registros/' %} text-primary underline {% endif %}">Registros</a></li>
       </ul>
     </div>
     <a class="btn btn-ghost text-xl">Sga</a>
@@ -17,8 +16,7 @@
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1 gap-2">
       <li><a href="{% url 'mostrar_home' %}" class="{% if request.path == '/sga/home/' %} btn btn-sm btn-soft {% endif %}">Home</a></li>
-      <li><a href="{% url 'mostrar_personas' %}" class="{% if request.path == '/sga/personas/' %} btn btn-sm btn-soft {% endif %}">Personas</a></li>
-      <li><a href="{% url 'mostrar_bautismos' %}" class="{% if request.path == '/sga/bautismos/' %} btn btn-sm btn-soft {% endif %}">Bautismos</a></li>
+      <li><a href="{% url 'mostrar_registros' %}" class="{% if request.path == '/sga/registros/' %} btn btn-sm btn-soft {% endif %}">Registros</a></li>
     </ul>
   </div>
   <div class="navbar-end">

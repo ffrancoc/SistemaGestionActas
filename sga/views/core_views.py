@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_GET
 from django.shortcuts import redirect, render
-from ..models import Persona
+from ..models import Registro
 
 @require_GET
 def index(request):
@@ -11,9 +11,8 @@ def index(request):
 @login_required
 @require_GET
 def mostrar_home(request):
-    count_personas = len(Persona.objects.all())
-
+    count_registros = len(Registro.objects.all())
 
     return render(request, 'home.html', context={
-        'count_personas': count_personas
+        'registros': count_registros
     })

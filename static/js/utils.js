@@ -6,6 +6,10 @@ export function setValueContent(id, value) {
   document.getElementById(id).value = value;
 }
 
+export function setValueContentDefault(id, value) {
+  document.getElementById(id).value = value ? value : "";
+}
+
 export function getItemById(id) {
   return document.getElementById(id);
 }
@@ -29,16 +33,19 @@ export function formatDateForInput(fechaStr) {
   return `${año}-${mesPad}-${diaPad}`;
 }
 
-export function deleteFlashMensaje() {
-  const mensajeFlash = document.getElementById("mensajeFlash");
-  if (mensajeFlash) {
-    setTimeout(() => {
-      mensajeFlash.classList.add(
-        "opacity-0",
-        "transition-opacity",
-        "duration-500"
-      );
-      setTimeout(() => mensajeFlash.remove(), 600);
-    }, 3000);
-  }
+export function getOrDefault(value, fallback = "N/A") {
+  return value ? value : fallback;
+}
+
+export function showAlert(text, icon = "success") {
+  Swal.fire({
+    width: 250,
+    text: text,
+    icon: icon,
+    confirmButtonText: "Cerrar",
+    buttonsStyling: false,
+    customClass: {
+      confirmButton: "btn btn-sm w-full block",
+    },
+  });
 }

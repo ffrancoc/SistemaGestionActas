@@ -1,4 +1,4 @@
-from ..models import Persona
+from ..models import Registro
 
 def validar_campos(data):
     campos_requeridos = [
@@ -9,7 +9,7 @@ def validar_campos(data):
 
 
 def construir_persona(data):
-    return Persona(**{campo: data[campo] for campo in data})
+    return Registro(**{campo: data[campo] for campo in data})
 
 def serializar_persona(persona):
     return {

@@ -5,7 +5,6 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 
 
-
 def mostrar_login(request):
     return render(request, 'login.html')    
 

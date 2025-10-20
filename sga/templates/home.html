@@ -1,12 +1,12 @@
 {% extends 'base.html' %} 
-{% block title %}Página de Inicio{% endblock %} 
+{% block title %}SGA | Home{% endblock %} 
 {% block content %}
 <main class="container bg-base-50 flex flex-col min-w-screen min-h-screen">
   {% include 'partials/navbar.html' %}
  
   
 
-  <div class="hero flex flex-grow flex-col">
+  <div class="hero flex flex-grow flex-col mt-30">
   <div class="hero-content flex-grow flex-col lg:flex-row">
     {% load static %}
       <img src="{% static "img/iglesia-icon.svg" %}" alt="iglesia"  class="w-64 h-64" />
@@ -27,7 +27,7 @@
     </svg>
     
     <div class="stat-title text-lg text-black">Personas</div>
-    <div class="stat-desc text-lg">{{ count_personas }}</div>
+    <div class="stat-desc text-lg">{{ count_registros }}</div>
   </div>
 
   <div class="stat flex flex-col justify-center items-center">

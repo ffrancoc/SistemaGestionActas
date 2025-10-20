@@ -1,43 +1,45 @@
-<dialog id="modalRegistrarPersona" class="modal">
+<dialog id="modalGuardarRegistro" class="modal">
   <div class="modal-box w-11/12 ">
     <form method="dialog">
       <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
     </form>
-    <h3 class="text-lg font-bold">Nuevo Registro</h3>
-    <form id="formPersona">
+    <h3 id="modalGuardarRegistroTitulo" class="text-lg font-bold">Nuevo Registro</h3>
+    <form id="formRegistro">
         
         <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
             <legend class="fieldset-legend"></legend>
 
+            <input type="text" id="registroId" name="registro_id" name="id" maxlength="100" hidden readonly/>
+
             <label class="input input-sm w-full">
               <span class="label">Nombre Completo</span>
-              <input type="text" name="nombre" maxlength="100" required/>
+              <input type="text" id="registroNombre" name="nombre" maxlength="100" required/>
             </label>
 
             <label class="input input-sm w-full">
               <span class="label">Apellido Completo</span>
-              <input type="text" name="apellido" maxlength="100" required/>
+              <input type="text" id="registroApellido" name="apellido" maxlength="100" required/>
             </label>
 
             <label class="input input-sm w-full">
               <span class="label">Lugar Nacimiento</span>
-              <input type="text" name="lugar_nacimiento" maxlength="200" required/>
+              <input type="text" id="registroLugarNacimiento" name="lugar_nacimiento" maxlength="200" required/>
             </label>
 
             <label class="input input-sm w-full">
               <span class="label">Parroquia</span>
-              <input type="text" name="parroquia_pertenencia" maxlength="200" required/>
+              <input type="text" id="registroParroquia" name="parroquia_pertenencia" maxlength="200" required/>
             </label>
 
 
             <label class="input input-sm w-full">
               <span class="label">Fecha Nacimiento</span>
-              <input type="date" name="fecha_nacimiento" maxlength="100" required/>
+              <input type="date" id="registroFechaNacimiento" name="fecha_nacimiento" maxlength="100" required/>
             </label>
 
             <label class="select select-sm w-full">
               <span class="label">Genero Persona</span>
-              <select name="genero" required>
+              <select id="registroGenero" name="genero" required>
                 <option value="" selected disabled>Seleccione una opción</option>
                 <option value="Masculino">Masculino</option>
                 <option value="Femenino">Femenino</option>
@@ -46,28 +48,28 @@
 
             <label class="input input-sm w-full">
               <span class="label">Nombre del Padre</span>
-              <input type="text" name="padre_nombre" maxlength="100" required/>
+              <input type="text" id="registroPadreNombre" name="padre_nombre" maxlength="100" required/>
             </label>
 
              <label class="input input-sm w-full">
               <span class="label">Apellido del Padre</span>
-              <input type="text" name="padre_apellido" maxlength="100" required/>
+              <input type="text" id="registroPadreApellido" name="padre_apellido" maxlength="100" required/>
             </label>
             
             <label class="input input-sm w-full">
               <span class="label">Nombre del Madre</span>
-              <input type="text" name="madre_nombre" maxlength="100" required/>
+              <input type="text" id="registroMadreNombre" name="madre_nombre" maxlength="100" required/>
             </label>
 
              <label class="input input-sm w-full">
               <span class="label">Apellido del Madre</span>
-              <input type="text" name="madre_apellido" maxlength="100" required/>
+              <input type="text" id="registroMadreApellido" name="madre_apellido" maxlength="100" required/>
             </label>
 
         </fieldset>
         
         <div class="mt-4">
-            <button type="submit" class="btn btn-sm btn-primary btn-block">Guardar</button>
+            <button type="submit" id="btnGuardarRegistro" class="btn btn-sm btn-primary btn-block">Guardar</button>
         </div>
     </form>
   </div>

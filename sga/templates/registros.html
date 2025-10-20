@@ -1,0 +1,44 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %}SGA | Registros{% endblock %} 
+{% block content %}
+<main class="container bg-base-50 min-w-screen min-h-screen">
+  {% include 'partials/navbar.html' %}
+
+  <div class="my-6 px-5 flex justify-end gap-2 mt-30">
+    <label class="input input-sm validator w-full">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 stat-title">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+        </svg>
+
+        <input name="q" placeholder="Buscar" hx-get="{% url "tabla_registros" %}" hx-target="#tabla" hx-trigger="keyup changed delay:300ms">
+      </label>
+    <button class="btn btn-sm btn-primary" onclick="mostrarGuardarRegistro()">Nuevo</button>
+  </div>
+  <div id="tabla" hx-get="{% url "tabla_registros" %}" hx-trigger="load">
+    <!-- Aquí se renderiza la tabla desde una vista parcial -->
+  </div>
+
+{% include 'components/registros/modal_actas.html'%}
+{% include 'components/registros/modal_registrar.html' %}
+{% include 'components/registros/modal_eliminar.html' %}
+{% include 'components/registros/modal_detalle.html' %}
+{% include 'components/registros/modal_eliminar_bautismo.html' %}
+{% include 'components/modal_cerrar_sesion.html' %}
+
+</main>
+{% endblock %}
+{% block scripts %}
+    <script>
+        const detalleRegistroURL = '{% url "detalle_registro" 0 %}';
+        const guardarRegistroURL = '{% url "guardar_registro" %}';
+        const eliminarRegistroURL = '{% url "eliminar_registro" 0 %}';
+        const detalleActasURL = '{% url "detalle_actas" 0 %}';
+        const tablaRegistrosURL = '{% url "tabla_registros" %}';
+        const guardarBautismoURL = '{% url "guardar_bautismo" %}';
+        const eliminarBautismoURL = '{% url "eliminar_bautismo" 0 %}';
+        const csrfToken = '{{ csrf_token }}';
+    </script>
+    <script type="module" src="{% static 'js/registros_script.js' %}"></script>
+    <script type="module" src="{% static 'js/actas_script.js' %}"></script>
+{% endblock %}
