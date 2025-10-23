@@ -1,6 +1,6 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% load static %}
-{% block title %}SGA | Registros{% endblock %} 
+{% block title %}SGA | Registros{% endblock %}
 {% block content %}
 <main class="container bg-base-50 min-w-screen min-h-screen">
   {% include 'partials/navbar.html' %}
@@ -24,6 +24,7 @@
 {% include 'components/registros/modal_eliminar.html' %}
 {% include 'components/registros/modal_detalle.html' %}
 {% include 'components/registros/modal_eliminar_bautismo.html' %}
+{% include 'components/registros/modal_eliminar_comunion.html' %}
 {% include 'components/modal_cerrar_sesion.html' %}
 
 </main>
@@ -37,6 +38,8 @@
         const tablaRegistrosURL = '{% url "tabla_registros" %}';
         const guardarBautismoURL = '{% url "guardar_bautismo" %}';
         const eliminarBautismoURL = '{% url "eliminar_bautismo" 0 %}';
+        const guardarComunionURL = '{% url "guardar_comunion" %}';
+        const eliminarComunionURL = '{% url "eliminar_comunion" 0 %}';
         const csrfToken = '{{ csrf_token }}';
     </script>
     <script type="module" src="{% static 'js/registros_script.js' %}"></script>

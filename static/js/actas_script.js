@@ -11,6 +11,8 @@ const modalActasRegistro = getItemById("modalActasRegistro");
 modalActasRegistro.addEventListener("close", () => {
   getItemById("formActaBautismo").reset();
   getItemById("registroIdBautismo").value = "";
+  getItemById("formActaComunion").reset();
+  getItemById("registroIdComunion").value = "";
 });
 
 /*######################################################################################## */
@@ -28,7 +30,7 @@ function mostrarActasRegistro(button) {
         setValueContent("registroIdBautismo", data.data.registro.id);
         setValueContent(
           "registroBautismo",
-          data.data.registro.nombre + " " + data.data.registro.apellido
+          data.data.registro.nombre + " " + data.data.registro.apellido,
         );
 
         if ("bautismo" in data.data) {
@@ -43,15 +45,15 @@ function mostrarActasRegistro(button) {
           const noActa = getOrDefault(data.data.bautismo.no_acta, "");
           const parroquiaBautismo = getOrDefault(
             data.data.bautismo.parroquia_bautismo,
-            ""
+            "",
           );
           const fechaBautismo = getOrDefault(
             data.data.bautismo.fecha_bautismo,
-            ""
+            "",
           );
           const sacerdoteBautismo = getOrDefault(
             data.data.bautismo.sacerdote,
-            ""
+            "",
           );
           const padrino1 = getOrDefault(data.data.bautismo.padrino_1, "");
           const padrino2 = getOrDefault(data.data.bautismo.padrino_2, "");
@@ -73,6 +75,49 @@ function mostrarActasRegistro(button) {
           btnBautismoModificar.classList.add("hidden");
           btnBautismoEliminar.classList.add("hidden");
         }
+
+        setValueContent("registroIdComunion", data.data.registro.id);
+        setValueContent(
+          "registroComunion",
+          data.data.registro.nombre + " " + data.data.registro.apellido,
+        );
+
+        if ("comunion" in data.data) {
+          const btnComunionGuardar = getItemById("btnComunionGuardar");
+          const btnComunionModificar = getItemById("btnComunionModificar");
+          const btnComunionEliminar = getItemById("btnComunionEliminar");
+
+          btnComunionEliminar.dataset.comunionId = data.data.comunion.id;
+
+          const noLibro = getOrDefault(data.data.comunion.no_libro, "");
+          const noFolio = getOrDefault(data.data.comunion.no_folio, "");
+          const noActa = getOrDefault(data.data.comunion.no_acta, "");
+          const parroquiaComunion = getOrDefault(
+            data.data.comunion.parroquia_comunion,
+            "",
+          );
+          const fechaComunion = getOrDefault(
+            data.data.comunion.fecha_comunion,
+            "",
+          );
+          const parrocoComunion = getOrDefault(data.data.comunion.parroco, "");
+
+          setValueContent("noLibroComunion", noLibro);
+          setValueContent("noFolioComunion", noFolio);
+          setValueContent("noActaComunion", noActa);
+          setValueContent("parroquiaComunion", parroquiaComunion);
+          setValueContent("fechaComunion", fechaComunion);
+          setValueContent("parrocoComunion", parrocoComunion);
+
+          btnComunionGuardar.classList.add("hidden");
+          btnComunionModificar.classList.remove("hidden");
+          btnComunionEliminar.classList.remove("hidden");
+        } else {
+          btnComunionGuardar.classList.remove("hidden");
+          btnComunionModificar.classList.add("hidden");
+          btnComunionEliminar.classList.add("hidden");
+        }
+
         const modalActasRegistro = getItemById("modalActasRegistro");
         modalActasRegistro.showModal();
       } else {
@@ -169,3 +214,87 @@ function eliminarBautismo() {
 }
 
 window.eliminarBautismo = eliminarBautismo;
+
+/*######################################################################################## */
+/* Código para modificar información en la base de datos */
+/*######################################################################################## */
+const formActaComunion = getItemById("formActaComunion");
+formActaComunion.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const formData = new FormData(formActaComunion);
+  const data = Object.fromEntries(formData.entries());
+
+  fetch(guardarComunionURL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": csrfToken,
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status === "ok") {
+        const modalActasRegistro = getItemById("modalActasRegistro");
+        modalActasRegistro.close();
+
+        htmx.ajax("GET", tablaRegistrosURL, {
+          target: "#tabla",
+          swap: "innerHTML",
+        });
+
+        showAlert(data.data, "success");
+      } else {
+        showAlert(data.data, "error");
+      }
+    })
+    .catch((error) => {
+      showAlert(error, "error");
+    });
+});
+
+/*######################################################################################## */
+/* Código mostrar modal de eliminar comunion */
+/*######################################################################################## */
+
+function mostrarEliminarComunion(button) {
+  const modalEliminarComunion = getItemById("modalEliminarComunion");
+  modalEliminarComunion.showModal();
+}
+
+window.mostrarEliminarComunion = mostrarEliminarComunion;
+
+/*######################################################################################## */
+/* Código para eliminar información en la base de datos */
+/*######################################################################################## */
+
+function eliminarComunion() {
+  const modalEliminarComunion = getItemById("modalEliminarComunion");
+  const btnComunionEliminar = getItemById("btnComunionEliminar");
+  const comunionId = btnComunionEliminar.dataset.comunionId;
+
+  const url = eliminarComunionURL.replace("/0/", "/" + comunionId + "/");
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status === "ok") {
+        modalEliminarComunion.close();
+        htmx.ajax("GET", tablaRegistrosURL, {
+          target: "#tabla",
+          swap: "innerHTML",
+        });
+
+        getItemById("modalActasRegistro").close();
+        showAlert(data.data, "success");
+      } else {
+        showAlert(data.data, "error");
+      }
+    })
+    .catch((error) => {
+      showAlert(error, "error");
+    });
+}
+
+window.eliminarComunion = eliminarComunion;

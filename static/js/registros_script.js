@@ -32,10 +32,10 @@ function mostrarRegistroDetalles(registroId) {
         const infoPadre = `${data.data.registro.padre_nombre} ${data.data.registro.padre_apellido}`;
         const nombreCompleto = `${data.data.registro.nombre} ${data.data.registro.apellido}`;
         const fechaModificacion = dateTimeToString(
-          data.data.registro.modificacion
+          data.data.registro.modificacion,
         );
         const fechaNacimiento = dateToString(
-          data.data.registro.fecha_nacimiento
+          data.data.registro.fecha_nacimiento,
         );
         const parroquiaPertenencia = data.data.registro.parroquia_pertenencia;
         const fechaCreacion = dateTimeToString(data.data.registro.creacion);
@@ -54,7 +54,7 @@ function mostrarRegistroDetalles(registroId) {
 
         if ("bautismo" in data.data) {
           const fechaBautismo = dateTimeToString(
-            data.data.bautismo.fecha_bautismo
+            data.data.bautismo.fecha_bautismo,
           );
           const padrino2Bautismo = getOrDefault(data.data.bautismo.padrino_2);
           const noLibroBautismo = getOrDefault(data.data.bautismo.no_libro);
@@ -64,10 +64,10 @@ function mostrarRegistroDetalles(registroId) {
           const parroquiaBautismo = data.data.bautismo.parroquia_bautismo;
           const padrino1Bautismo = data.data.bautismo.padrino_1;
           const fechaCreacionBautismo = dateTimeToString(
-            data.data.bautismo.creacion
+            data.data.bautismo.creacion,
           );
           const fechaModificacionBautismo = dateTimeToString(
-            data.data.bautismo.modificacion
+            data.data.bautismo.modificacion,
           );
 
           setInnerContent("noLibroBautismoDetalle", noLibroBautismo);
@@ -80,11 +80,11 @@ function mostrarRegistroDetalles(registroId) {
           setInnerContent("padrino2BautismoDetalle", padrino2Bautismo);
           setInnerContent(
             "fechaCreacionBautismoDetalle",
-            fechaCreacionBautismo
+            fechaCreacionBautismo,
           );
           setInnerContent(
             "fechaModificacionBautismoDetalle",
-            fechaModificacionBautismo
+            fechaModificacionBautismo,
           );
         } else {
           setInnerContent("noLibroBautismoDetalle", "");
@@ -97,6 +97,47 @@ function mostrarRegistroDetalles(registroId) {
           setInnerContent("padrino2BautismoDetalle", "");
           setInnerContent("fechaCreacionBautismoDetalle", "");
           setInnerContent("fechaModificacionBautismoDetalle", "");
+        }
+
+        if ("comunion" in data.data) {
+          const fechaComunion = dateTimeToString(
+            data.data.comunion.fecha_comunion,
+          );
+          const noLibroComunion = getOrDefault(data.data.comunion.no_libro);
+          const noFolioComunion = getOrDefault(data.data.comunion.no_folio);
+          const noActaComunion = getOrDefault(data.data.comunion.no_acta);
+          const parrocoComunion = data.data.comunion.parroco;
+          const parroquiaComunion = data.data.comunion.parroquia_comunion;
+          const fechaCreacionComunion = dateTimeToString(
+            data.data.comunion.creacion,
+          );
+          const fechaModificacionComunion = dateTimeToString(
+            data.data.comunion.modificacion,
+          );
+
+          setInnerContent("noLibroComunionDetalle", noLibroComunion);
+          setInnerContent("noFolioComunionDetalle", noFolioComunion);
+          setInnerContent("noActaComunionDetalle", noActaComunion);
+          setInnerContent("parroquiaComunionDetalle", parroquiaComunion);
+          setInnerContent("fechaComunionDetalle", fechaComunion);
+          setInnerContent("parrocoComunionDetalle", parrocoComunion);
+          setInnerContent(
+            "fechaCreacionComunionDetalle",
+            fechaCreacionComunion,
+          );
+          setInnerContent(
+            "fechaModificacionComunionDetalle",
+            fechaModificacionComunion,
+          );
+        } else {
+          setInnerContent("noLibroComunionDetalle", "");
+          setInnerContent("noFolioComunionDetalle", "");
+          setInnerContent("noActaComunionDetalle", "");
+          setInnerContent("parroquiaComunionDetalle", "");
+          setInnerContent("fechaComunionDetalle", "");
+          setInnerContent("parrocoComunionDetalle", "");
+          setInnerContent("fechaCreacionComunionDetalle", "");
+          setInnerContent("fechaModificacionComunionDetalle", "");
         }
 
         const modalDetallePersona = getItemById("modalRegistroDetalle");
@@ -129,7 +170,7 @@ function mostrarModificarRegistro(button) {
         const lugarNacimiento = data.data.lugar_nacimiento;
         const parroquiaPertenencia = data.data.parroquia_pertenencia;
         const fechaNacimiento = formatDateForInput(
-          dateToString(data.data.fecha_nacimiento)
+          dateToString(data.data.fecha_nacimiento),
         );
         const genero = data.data.genero;
         const madreNombre = data.data.madre_nombre;

@@ -28,7 +28,6 @@
                             type="text"
                             id="registroIdBautismo"
                             name="registro_id"
-                            name="id"
                             maxlength="100"
                             hidden
                             readonly
@@ -183,7 +182,137 @@
                 aria-label="Comunión"
             />
             <div class="tab-content bg-base-100 border-base-300 p-6">
-                Tab content 3
+                <form id="formActaComunion">
+                    <fieldset
+                        class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4"
+                    >
+                        <legend class="fieldset-legend"></legend>
+
+                        <input
+                            type="text"
+                            id="registroIdComunion"
+                            name="registro_id"
+                            maxlength="100"
+                            hidden
+                            readonly
+                        />
+
+                        <label class="input input-sm w-full">
+                            <span class="label">Nombre</span>
+                            <input
+                                type="text"
+                                id="registroComunion"
+                                name="nombre"
+                                maxlength="100"
+                                readonly
+                                required
+                            />
+                        </label>
+
+                        <label class="input input-sm w-full">
+                            <span class="label">No. Libro</span>
+                            <input
+                                type="text"
+                                id="noLibroComunion"
+                                name="no_libro"
+                                pattern="\d+"
+                                title="Formato inválido, ingrese solo números"
+                                maxlength="10"
+                            />
+                            <span class="badge badge-neutral badge-xs"
+                                >Opcional</span
+                            >
+                        </label>
+
+                        <label class="input input-sm w-full">
+                            <span class="label">No. Folio</span>
+                            <input
+                                type="text"
+                                id="noFolioComunion"
+                                name="no_folio"
+                                pattern="\d+"
+                                title="Formato inválido, ingrese solo números"
+                                maxlength="10"
+                            />
+                            <span class="badge badge-neutral badge-xs"
+                                >Opcional</span
+                            >
+                        </label>
+
+                        <label class="input input-sm w-full">
+                            <span class="label">No. Acta</span>
+                            <input
+                                type="text"
+                                id="noActaComunion"
+                                name="no_acta"
+                                pattern="\d+"
+                                title="Formato inválido, ingrese solo números"
+                                maxlength="10"
+                            />
+                            <span class="badge badge-neutral badge-xs"
+                                >Opcional</span
+                            >
+                        </label>
+
+                        <label class="input input-sm w-full">
+                            <span class="label">Parroquia Comunión</span>
+                            <input
+                                type="text"
+                                id="parroquiaComunion"
+                                name="parroquia_comunion"
+                                maxlength="100"
+                                required
+                            />
+                        </label>
+
+                        <label class="input input-sm w-full">
+                            <span class="label">Fecha Celebración</span>
+                            <input
+                                type="date"
+                                id="fechaComunion"
+                                name="fecha_comunion"
+                                maxlength="100"
+                                required
+                            />
+                        </label>
+
+                        <label class="input input-sm w-full">
+                            <span class="label">Parroco</span>
+                            <input
+                                type="text"
+                                id="parrocoComunion"
+                                name="parroco"
+                                maxlength="200"
+                                required
+                            />
+                        </label>
+                    </fieldset>
+
+                    <div class="mt-4 mb-8 flex justify-end">
+                        <button
+                            id="btnComunionGuardar"
+                            type="submit"
+                            class="btn btn-sm btn-primary"
+                        >
+                            Guardar
+                        </button>
+                        <button
+                            id="btnComunionModificar"
+                            type="submit"
+                            class="btn btn-sm btn-primary me-2"
+                        >
+                            Actualizar
+                        </button>
+                        <button
+                            id="btnComunionEliminar"
+                            type="button"
+                            class="btn btn-sm btn-error"
+                            onclick="mostrarEliminarComunion(this)"
+                        >
+                            Eliminar
+                        </button>
+                    </div>
+                </form>
             </div>
 
             <input
