@@ -1,94 +1,210 @@
 <dialog id="modalActasRegistro" class="modal">
-  <div class="modal-box w-11/12">
-    <form method="dialog">
-      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-    </form>
-    <h3 class="text-lg font-bold mb-4">Actas</h3>
+    <div class="modal-box w-11/12">
+        <form method="dialog">
+            <button
+                class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            >
+                ✕
+            </button>
+        </form>
+        <h3 class="text-lg font-bold mb-4">Actas</h3>
 
-<div class="tabs tabs-box border-0 tabs-bottom tabs-xs">
+        <div class="tabs tabs-box border-0 tabs-bottom tabs-xs">
+            <input
+                type="radio"
+                name="tab_registro_acta"
+                class="tab"
+                aria-label="Bautismo"
+                checked="checked"
+            />
+            <div class="tab-content p-6">
+                <form id="formActaBautismo">
+                    <fieldset
+                        class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4"
+                    >
+                        <legend class="fieldset-legend"></legend>
 
+                        <input
+                            type="text"
+                            id="registroIdBautismo"
+                            name="registro_id"
+                            name="id"
+                            maxlength="100"
+                            hidden
+                            readonly
+                        />
 
-  <input type="radio" name="tab_registro_acta" class="tab" aria-label="Bautismo" checked="checked"/>
-  <div class="tab-content  p-6">
-    <form id="formActaBautismo">
-        
-        <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
-            <legend class="fieldset-legend"></legend>
+                        <label class="input input-sm w-full">
+                            <span class="label">Nombre</span>
+                            <input
+                                type="text"
+                                id="registroBautismo"
+                                name="nombre"
+                                maxlength="100"
+                                readonly
+                                required
+                            />
+                        </label>
 
-            <input type="text" id="registroIdBautismo" name="registro_id" name="id" maxlength="100" hidden readonly/>
+                        <label class="input input-sm w-full">
+                            <span class="label">No. Libro</span>
+                            <input
+                                type="text"
+                                id="noLibroBautismo"
+                                name="no_libro"
+                                pattern="\d+"
+                                title="Formato inválido, ingrese solo números"
+                                maxlength="10"
+                            />
+                            <span class="badge badge-neutral badge-xs"
+                                >Opcional</span
+                            >
+                        </label>
 
-            <label class="input input-sm w-full">
-              <span class="label">Nombre</span>
-              <input type="text" id="registroBautismo" name="nombre" maxlength="100" readonly required/>
-            </label>
+                        <label class="input input-sm w-full">
+                            <span class="label">No. Folio</span>
+                            <input
+                                type="text"
+                                id="noFolioBautismo"
+                                name="no_folio"
+                                pattern="\d+"
+                                title="Formato inválido, ingrese solo números"
+                                maxlength="10"
+                            />
+                            <span class="badge badge-neutral badge-xs"
+                                >Opcional</span
+                            >
+                        </label>
 
-            <label class="input input-sm w-full">
-              <span class="label">No. Libro</span>
-              <input type="text" id="noLibroBautismo" name="no_libro" maxlength="10" />
-              <span class="badge badge-neutral badge-xs">Opcional</span>
-            </label>
+                        <label class="input input-sm w-full">
+                            <span class="label">No. Acta</span>
+                            <input
+                                type="text"
+                                id="noActaBautismo"
+                                name="no_acta"
+                                pattern="\d+"
+                                title="Formato inválido, ingrese solo números"
+                                maxlength="10"
+                            />
+                            <span class="badge badge-neutral badge-xs"
+                                >Opcional</span
+                            >
+                        </label>
 
-            <label class="input input-sm w-full">
-              <span class="label">No. Folio</span>
-              <input type="text" id="noFolioBautismo" name="no_folio" maxlength="10" />
-              <span class="badge badge-neutral badge-xs">Opcional</span>
-            </label>
+                        <label class="input input-sm w-full">
+                            <span class="label">Parroquia Bautismo</span>
+                            <input
+                                type="text"
+                                id="parroquiaBautismo"
+                                name="parroquia_bautismo"
+                                maxlength="100"
+                                required
+                            />
+                        </label>
 
-            <label class="input input-sm w-full">
-              <span class="label">No. Acta</span>
-              <input type="text" id="noActaBautismo" name="no_acta" maxlength="10" />
-              <span class="badge badge-neutral badge-xs">Opcional</span>
-            </label>
+                        <label class="input input-sm w-full">
+                            <span class="label">Fecha Celebración</span>
+                            <input
+                                type="date"
+                                id="fechaBautismo"
+                                name="fecha_bautismo"
+                                maxlength="100"
+                                required
+                            />
+                        </label>
 
-            
-            <label class="input input-sm w-full">
-              <span class="label">Parroquia Bautismo</span>
-              <input type="text" id="parroquiaBautismo" name="parroquia_bautismo" maxlength="100" required/>
-            </label>
+                        <label class="input input-sm w-full">
+                            <span class="label">Sacerdote</span>
+                            <input
+                                type="text"
+                                id="sacerdoteBautismo"
+                                name="sacerdote"
+                                maxlength="200"
+                                required
+                            />
+                        </label>
 
-            <label class="input input-sm w-full">
-              <span class="label">Fecha Celebración</span>
-              <input type="date" id="fechaBautismo" name="fecha_bautismo" maxlength="100" required/>
-            </label>
+                        <label class="input input-sm w-full">
+                            <span class="label">Padrino 1</span>
+                            <input
+                                type="text"
+                                id="padrino1Bautismo"
+                                name="padrino_1"
+                                maxlength="200"
+                                required
+                            />
+                        </label>
 
-            <label class="input input-sm w-full">
-              <span class="label">Sacerdote</span>
-              <input type="text" id="sacerdoteBautismo" name="sacerdote" maxlength="200" required/>
-            </label>
+                        <label class="input input-sm w-full">
+                            <span class="label">Padrino 2</span>
+                            <input
+                                type="text"
+                                id="padrino2Bautismo"
+                                name="padrino_2"
+                                maxlength="100"
+                            />
+                            <span class="badge badge-neutral badge-xs"
+                                >Opcional</span
+                            >
+                        </label>
+                    </fieldset>
 
-            <label class="input input-sm w-full">
-              <span class="label">Padrino 1</span>
-              <input type="text" id="padrino1Bautismo" name="padrino_1" maxlength="200" required/>
-            </label>
+                    <div class="mt-4 mb-8 flex justify-end">
+                        <button
+                            id="btnBautismoGuardar"
+                            type="submit"
+                            class="btn btn-sm btn-primary"
+                        >
+                            Guardar
+                        </button>
+                        <button
+                            id="btnBautismoModificar"
+                            type="submit"
+                            class="btn btn-sm btn-primary me-2"
+                        >
+                            Actualizar
+                        </button>
+                        <button
+                            id="btnBautismoEliminar"
+                            type="button"
+                            class="btn btn-sm btn-error"
+                            onclick="mostrarEliminarBautismo(this)"
+                        >
+                            Eliminar
+                        </button>
+                    </div>
+                </form>
+            </div>
 
+            <input
+                type="radio"
+                name="tab_registro_acta"
+                class="tab"
+                aria-label="Comunión"
+            />
+            <div class="tab-content bg-base-100 border-base-300 p-6">
+                Tab content 3
+            </div>
 
-            <label class="input input-sm w-full">
-              <span class="label">Padrino 2</span>
-              <input type="text" id="padrino2Bautismo" name="padrino_2" maxlength="100" />
-              <span class="badge badge-neutral badge-xs">Opcional</span>
-            </label>
+            <input
+                type="radio"
+                name="tab_registro_acta"
+                class="tab"
+                aria-label="Confirmación"
+            />
+            <div class="tab-content bg-base-100 border-base-300 p-6">
+                Tab content 3
+            </div>
 
-        </fieldset>
-        
-        <div class="mt-4 mb-8 flex justify-end">
-            <button id="btnBautismoGuardar" type="submit" class="btn btn-sm btn-primary">Guardar</button>
-            <button id="btnBautismoModificar" type="submit" class="btn btn-sm btn-primary me-2">Actualizar</button>
-            <button id="btnBautismoEliminar" type="button" class="btn btn-sm btn-error" onclick="mostrarEliminarBautismo(this)">Eliminar</button>
+            <input
+                type="radio"
+                name="tab_registro_acta"
+                class="tab"
+                aria-label="Matrimonio"
+            />
+            <div class="tab-content bg-base-100 border-base-300 p-6">
+                Tab content 3
+            </div>
         </div>
-    </form>
-  </div>
-
-  <input type="radio" name="tab_registro_acta" class="tab" aria-label="Comunión" />
-  <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 3</div>
-
-  
-  <input type="radio" name="tab_registro_acta" class="tab" aria-label="Confirmación" />
-  <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 3</div>
-
-  
-  <input type="radio" name="tab_registro_acta" class="tab" aria-label="Matrimonio" />
-  <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 3</div>
-</div>
-    
-  </div>
+    </div>
 </dialog>
