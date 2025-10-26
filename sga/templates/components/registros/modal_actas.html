@@ -1,5 +1,5 @@
 <dialog id="modalActasRegistro" class="modal">
-    <div class="modal-box w-11/12">
+    <div class="modal-box w-11/12 bg-base-200">
         <form method="dialog">
             <button
                 class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
@@ -7,7 +7,22 @@
                 ✕
             </button>
         </form>
-        <h3 class="text-lg font-bold mb-4">Actas</h3>
+        <div class="flex gap-2 items-center">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                class="size-5 text-gray-600"
+            >
+                <path
+                    d="M10.75 16.82A7.462 7.462 0 0 1 15 15.5c.71 0 1.396.098 2.046.282A.75.75 0 0 0 18 15.06v-11a.75.75 0 0 0-.546-.721A9.006 9.006 0 0 0 15 3a8.963 8.963 0 0 0-4.25 1.065V16.82ZM9.25 4.065A8.963 8.963 0 0 0 5 3c-.85 0-1.673.118-2.454.339A.75.75 0 0 0 2 4.06v11a.75.75 0 0 0 .954.721A7.506 7.506 0 0 1 5 15.5c1.579 0 3.042.487 4.25 1.32V4.065Z"
+                /></svg
+
+            <h3  class="text-lg font-semibold">
+                Actas
+            </h3>
+        </div>
+
 
         <div class="tabs tabs-box border-0 tabs-bottom tabs-xs">
             <input
@@ -19,9 +34,7 @@
             />
             <div class="tab-content p-6">
                 <form id="formActaBautismo">
-                    <fieldset
-                        class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4"
-                    >
+                    <fieldset class="fieldset w-full p-4">
                         <legend class="fieldset-legend"></legend>
 
                         <input
@@ -34,7 +47,7 @@
                         />
 
                         <label class="input input-sm w-full">
-                            <span class="label">Nombre</span>
+                            <span class="label w-32">Nombre</span>
                             <input
                                 type="text"
                                 id="registroBautismo"
@@ -46,7 +59,7 @@
                         </label>
 
                         <label class="input input-sm w-full">
-                            <span class="label">No. Libro</span>
+                            <span class="label w-32">No. Libro</span>
                             <input
                                 type="text"
                                 id="noLibroBautismo"
@@ -61,7 +74,7 @@
                         </label>
 
                         <label class="input input-sm w-full">
-                            <span class="label">No. Folio</span>
+                            <span class="label w-32">No. Folio</span>
                             <input
                                 type="text"
                                 id="noFolioBautismo"
@@ -76,7 +89,7 @@
                         </label>
 
                         <label class="input input-sm w-full">
-                            <span class="label">No. Acta</span>
+                            <span class="label w-32">No. Acta</span>
                             <input
                                 type="text"
                                 id="noActaBautismo"
@@ -91,7 +104,7 @@
                         </label>
 
                         <label class="input input-sm w-full">
-                            <span class="label">Parroquia Bautismo</span>
+                            <span class="label w-32">Parroquia</span>
                             <input
                                 type="text"
                                 id="parroquiaBautismo"
@@ -102,7 +115,7 @@
                         </label>
 
                         <label class="input input-sm w-full">
-                            <span class="label">Fecha Celebración</span>
+                            <span class="label w-32">Fecha</span>
                             <input
                                 type="date"
                                 id="fechaBautismo"
@@ -113,7 +126,7 @@
                         </label>
 
                         <label class="input input-sm w-full">
-                            <span class="label">Sacerdote</span>
+                            <span class="label w-32">Sacerdote</span>
                             <input
                                 type="text"
                                 id="sacerdoteBautismo"
@@ -124,7 +137,7 @@
                         </label>
 
                         <label class="input input-sm w-full">
-                            <span class="label">Padrino 1</span>
+                            <span class="label w-32">Padrino 1</span>
                             <input
                                 type="text"
                                 id="padrino1Bautismo"
@@ -135,7 +148,7 @@
                         </label>
 
                         <label class="input input-sm w-full">
-                            <span class="label">Padrino 2</span>
+                            <span class="label w-32">Padrino 2</span>
                             <input
                                 type="text"
                                 id="padrino2Bautismo"
@@ -148,7 +161,7 @@
                         </label>
                     </fieldset>
 
-                    <div class="mt-4 mb-8 flex justify-end">
+                    <div class="mt-4 mb-8 px-4 flex gap-2 justify-end">
                         <button
                             id="btnBautismoGuardar"
                             type="submit"
@@ -159,14 +172,14 @@
                         <button
                             id="btnBautismoModificar"
                             type="submit"
-                            class="btn btn-sm btn-primary me-2"
+                            class="btn btn-sm btn-primary flex-grow"
                         >
                             Actualizar
                         </button>
                         <button
                             id="btnBautismoEliminar"
                             type="button"
-                            class="btn btn-sm btn-error"
+                            class="btn btn-sm btn-error flex-grow"
                             onclick="mostrarEliminarBautismo(this)"
                         >
                             Eliminar
@@ -181,11 +194,9 @@
                 class="tab"
                 aria-label="Comunión"
             />
-            <div class="tab-content bg-base-100 border-base-300 p-6">
+            <div class="tab-content p-6">
                 <form id="formActaComunion">
-                    <fieldset
-                        class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4"
-                    >
+                    <fieldset class="fieldset w-full p-4">
                         <legend class="fieldset-legend"></legend>
 
                         <input
@@ -198,7 +209,7 @@
                         />
 
                         <label class="input input-sm w-full">
-                            <span class="label">Nombre</span>
+                            <span class="label w-32">Nombre</span>
                             <input
                                 type="text"
                                 id="registroComunion"
@@ -210,7 +221,7 @@
                         </label>
 
                         <label class="input input-sm w-full">
-                            <span class="label">No. Libro</span>
+                            <span class="label w-32">No. Libro</span>
                             <input
                                 type="text"
                                 id="noLibroComunion"
@@ -225,7 +236,7 @@
                         </label>
 
                         <label class="input input-sm w-full">
-                            <span class="label">No. Folio</span>
+                            <span class="label w-32">No. Folio</span>
                             <input
                                 type="text"
                                 id="noFolioComunion"
@@ -240,7 +251,7 @@
                         </label>
 
                         <label class="input input-sm w-full">
-                            <span class="label">No. Acta</span>
+                            <span class="label w-32">No. Acta</span>
                             <input
                                 type="text"
                                 id="noActaComunion"
@@ -255,7 +266,7 @@
                         </label>
 
                         <label class="input input-sm w-full">
-                            <span class="label">Parroquia Comunión</span>
+                            <span class="label w-32">Parroquia</span>
                             <input
                                 type="text"
                                 id="parroquiaComunion"
@@ -266,7 +277,7 @@
                         </label>
 
                         <label class="input input-sm w-full">
-                            <span class="label">Fecha Celebración</span>
+                            <span class="label w-32">Fecha</span>
                             <input
                                 type="date"
                                 id="fechaComunion"
@@ -277,7 +288,7 @@
                         </label>
 
                         <label class="input input-sm w-full">
-                            <span class="label">Parroco</span>
+                            <span class="label w-32">Parroco</span>
                             <input
                                 type="text"
                                 id="parrocoComunion"
@@ -288,7 +299,7 @@
                         </label>
                     </fieldset>
 
-                    <div class="mt-4 mb-8 flex justify-end">
+                    <div class="mt-4 mb-8 px-4 flex gap-2 justify-end">
                         <button
                             id="btnComunionGuardar"
                             type="submit"
@@ -299,14 +310,14 @@
                         <button
                             id="btnComunionModificar"
                             type="submit"
-                            class="btn btn-sm btn-primary me-2"
+                            class="btn btn-sm btn-primary flex-grow"
                         >
                             Actualizar
                         </button>
                         <button
                             id="btnComunionEliminar"
                             type="button"
-                            class="btn btn-sm btn-error"
+                            class="btn btn-sm btn-error flex-grow"
                             onclick="mostrarEliminarComunion(this)"
                         >
                             Eliminar
@@ -321,8 +332,158 @@
                 class="tab"
                 aria-label="Confirmación"
             />
-            <div class="tab-content bg-base-100 border-base-300 p-6">
-                Tab content 3
+            <div class="tab-content p-6">
+                <form id="formActaConfirmacion">
+                    <fieldset class="fieldset w-full p-4">
+                        <legend class="fieldset-legend"></legend>
+
+                        <input
+                            type="text"
+                            id="registroIdConfirmacion"
+                            name="registro_id"
+                            maxlength="100"
+                            hidden
+                            readonly
+                        />
+
+                        <label class="input input-sm w-full">
+                            <span class="label w-32">Nombre</span>
+                            <input
+                                type="text"
+                                id="registroConfirmacion"
+                                name="nombre"
+                                maxlength="100"
+                                readonly
+                                required
+                            />
+                        </label>
+
+                        <label class="input input-sm w-full">
+                            <span class="label w-32">No. Libro</span>
+                            <input
+                                type="text"
+                                id="noLibroConfirmacion"
+                                name="no_libro"
+                                pattern="\d+"
+                                title="Formato inválido, ingrese solo números"
+                                maxlength="10"
+                            />
+                            <span class="badge badge-neutral badge-xs"
+                                >Opcional</span
+                            >
+                        </label>
+
+                        <label class="input input-sm w-full">
+                            <span class="label w-32">No. Folio</span>
+                            <input
+                                type="text"
+                                id="noFolioConfirmacion"
+                                name="no_folio"
+                                pattern="\d+"
+                                title="Formato inválido, ingrese solo números"
+                                maxlength="10"
+                            />
+                            <span class="badge badge-neutral badge-xs"
+                                >Opcional</span
+                            >
+                        </label>
+
+                        <label class="input input-sm w-full">
+                            <span class="label w-32">No. Acta</span>
+                            <input
+                                type="text"
+                                id="noActaConfirmacion"
+                                name="no_acta"
+                                pattern="\d+"
+                                title="Formato inválido, ingrese solo números"
+                                maxlength="10"
+                            />
+                            <span class="badge badge-neutral badge-xs"
+                                >Opcional</span
+                            >
+                        </label>
+
+                        <label class="input input-sm w-full">
+                            <span class="label w-32">Parroquia</span>
+                            <input
+                                type="text"
+                                id="parroquiaConfirmacion"
+                                name="parroquia_confirmacion"
+                                maxlength="100"
+                                required
+                            />
+                        </label>
+
+                        <label class="input input-sm w-full">
+                            <span class="label w-32">Fecha</span>
+                            <input
+                                type="date"
+                                id="fechaConfirmacion"
+                                name="fecha_confirmacion"
+                                maxlength="100"
+                                required
+                            />
+                        </label>
+
+                        <label class="input input-sm w-full">
+                            <span class="label w-32">Obispo</span>
+                            <input
+                                type="text"
+                                id="obispoConfirmacion"
+                                name="obispo"
+                                maxlength="200"
+                                required
+                            />
+                        </label>
+
+                        <label class="input input-sm w-full">
+                            <span class="label w-32">Parroco</span>
+                            <input
+                                type="text"
+                                id="parrocoConfirmacion"
+                                name="parroco"
+                                maxlength="200"
+                                required
+                            />
+                        </label>
+
+                        <label class="input input-sm w-full">
+                            <span class="label w-32">Padrino / Madrina</span>
+                            <input
+                                type="text"
+                                id="padrinoConfirmacion"
+                                name="padrino"
+                                maxlength="200"
+                                required
+                            />
+                        </label>
+                    </fieldset>
+
+                    <div class="mt-4 mb-8 px-4 flex gap-2 justify-end">
+                        <button
+                            id="btnConfirmacionGuardar"
+                            type="submit"
+                            class="btn btn-sm btn-primary flex-grow"
+                        >
+                            Guardar
+                        </button>
+                        <button
+                            id="btnConfirmacionModificar"
+                            type="submit"
+                            class="btn btn-sm btn-primary flex-grow"
+                        >
+                            Actualizar
+                        </button>
+                        <button
+                            id="btnConfirmacionEliminar"
+                            type="button"
+                            class="btn btn-sm btn-error flex-grow"
+                            onclick="mostrarEliminarConfirmacion(this)"
+                        >
+                            Eliminar
+                        </button>
+                    </div>
+                </form>
             </div>
 
             <input
@@ -331,9 +492,7 @@
                 class="tab"
                 aria-label="Matrimonio"
             />
-            <div class="tab-content bg-base-100 border-base-300 p-6">
-                Tab content 3
-            </div>
+            <div class="tab-content p-6">Tab content 3</div>
         </div>
     </div>
 </dialog>

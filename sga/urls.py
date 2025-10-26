@@ -40,4 +40,19 @@ urlpatterns = [
         views.eliminar_comunion,
         name="eliminar_comunion",
     ),
+    path(
+        "sga/confirmaciones/",
+        views.mostrar_confirmaciones,
+        name="mostrar_confirmaciones",
+    ),
+    path(
+        "sga/confirmacion/guardar",
+        views.guardar_confirmacion,
+        name="guardar_confirmacion",
+    ),
+    path(
+        "sga/confirmacion/<int:confirmacion_id>/eliminar",
+        views.eliminar_confirmacion,
+        name="eliminar_confirmacion",
+    ),
 ]

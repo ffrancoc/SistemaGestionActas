@@ -1,76 +1,180 @@
 <dialog id="modalGuardarRegistro" class="modal">
-  <div class="modal-box w-11/12 ">
-    <form method="dialog">
-      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-    </form>
-    <h3 id="modalGuardarRegistroTitulo" class="text-lg font-bold">Nuevo Registro</h3>
-    <form id="formRegistro">
-        
-        <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
-            <legend class="fieldset-legend"></legend>
+    <div class="modal-box w-11/12 bg-base-200">
+        <form method="dialog">
+            <button
+                class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            >
+                ✕
+            </button>
+        </form>
+        <div class="flex gap-2 items-center">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                class="size-5"
+                id="registrarIcon"
+            >
+                <path
+                    d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"
+                />
+            </svg>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                class="size-5"
+                id="modificarIcon"
+            >
+                <path
+                    d="m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z"
+                />
+                <path
+                    d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z"
+                />
+            </svg>
 
-            <input type="text" id="registroId" name="registro_id" name="id" maxlength="100" hidden readonly/>
-
-            <label class="input input-sm w-full">
-              <span class="label">Nombre Completo</span>
-              <input type="text" id="registroNombre" name="nombre" maxlength="100" required/>
-            </label>
-
-            <label class="input input-sm w-full">
-              <span class="label">Apellido Completo</span>
-              <input type="text" id="registroApellido" name="apellido" maxlength="100" required/>
-            </label>
-
-            <label class="input input-sm w-full">
-              <span class="label">Lugar Nacimiento</span>
-              <input type="text" id="registroLugarNacimiento" name="lugar_nacimiento" maxlength="200" required/>
-            </label>
-
-            <label class="input input-sm w-full">
-              <span class="label">Parroquia</span>
-              <input type="text" id="registroParroquia" name="parroquia_pertenencia" maxlength="200" required/>
-            </label>
-
-
-            <label class="input input-sm w-full">
-              <span class="label">Fecha Nacimiento</span>
-              <input type="date" id="registroFechaNacimiento" name="fecha_nacimiento" maxlength="100" required/>
-            </label>
-
-            <label class="select select-sm w-full">
-              <span class="label">Genero Persona</span>
-              <select id="registroGenero" name="genero" required>
-                <option value="" selected disabled>Seleccione una opción</option>
-                <option value="Masculino">Masculino</option>
-                <option value="Femenino">Femenino</option>
-              </select>
-            </label>
-
-            <label class="input input-sm w-full">
-              <span class="label">Nombre del Padre</span>
-              <input type="text" id="registroPadreNombre" name="padre_nombre" maxlength="100" required/>
-            </label>
-
-             <label class="input input-sm w-full">
-              <span class="label">Apellido del Padre</span>
-              <input type="text" id="registroPadreApellido" name="padre_apellido" maxlength="100" required/>
-            </label>
-            
-            <label class="input input-sm w-full">
-              <span class="label">Nombre del Madre</span>
-              <input type="text" id="registroMadreNombre" name="madre_nombre" maxlength="100" required/>
-            </label>
-
-             <label class="input input-sm w-full">
-              <span class="label">Apellido del Madre</span>
-              <input type="text" id="registroMadreApellido" name="madre_apellido" maxlength="100" required/>
-            </label>
-
-        </fieldset>
-        
-        <div class="mt-4">
-            <button type="submit" id="btnGuardarRegistro" class="btn btn-sm btn-primary btn-block">Guardar</button>
+            <h3 id="modalGuardarRegistroTitulo" class="text-lg font-semibold">
+                Nuevo
+            </h3>
         </div>
-    </form>
-  </div>
+
+        <form id="formRegistro">
+            <fieldset
+                class="fieldset bg-base-200 w-full p-4"
+            >
+                <legend class="fieldset-legend"></legend>
+
+                <input
+                    type="text"
+                    id="registroId"
+                    name="registro_id"
+                    name="id"
+                    maxlength="100"
+                    hidden
+                    readonly
+                />
+
+                <label class="input input-sm w-full">
+                    <span class="label w-52">Nombre Completo</span>
+                    <input
+                        type="text"
+                        id="registroNombre"
+                        name="nombre"
+                        maxlength="100"
+                        required
+                    />
+                </label>
+
+                <label class="input input-sm w-full">
+                    <span class="label w-52">Apellido Completo</span>
+                    <input
+                        type="text"
+                        id="registroApellido"
+                        name="apellido"
+                        maxlength="100"
+                        required
+                    />
+                </label>
+
+                <label class="input input-sm w-full">
+                    <span class="label w-52">Lugar de Nacimiento</span>
+                    <input
+                        type="text"
+                        id="registroLugarNacimiento"
+                        name="lugar_nacimiento"
+                        maxlength="200"
+                        required
+                    />
+                </label>
+
+                <label class="input input-sm w-full">
+                    <span class="label w-52">Parroquia</span>
+                    <input
+                        type="text"
+                        id="registroParroquia"
+                        name="parroquia_pertenencia"
+                        maxlength="200"
+                        required
+                    />
+                </label>
+
+                <label class="input input-sm w-full">
+                    <span class="label w-52">Fecha de Nacimiento</span>
+                    <input
+                        type="date"
+                        id="registroFechaNacimiento"
+                        name="fecha_nacimiento"
+                        maxlength="100"
+                        required
+                    />
+                </label>
+
+                <label class="select select-sm w-full">
+                    <span class="label w-52">Genero</span>
+                    <select id="registroGenero" name="genero" required>
+                        <option value="" selected disabled>
+                            Seleccione una opción
+                        </option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                    </select>
+                </label>
+
+                <label class="input input-sm w-full">
+                    <span class="label w-52">Nombre del Padre</span>
+                    <input
+                        type="text"
+                        id="registroPadreNombre"
+                        name="padre_nombre"
+                        maxlength="100"
+                        required
+                    />
+                </label>
+
+                <label class="input input-sm w-full">
+                    <span class="label w-52">Apellido del Padre</span>
+                    <input
+                        type="text"
+                        id="registroPadreApellido"
+                        name="padre_apellido"
+                        maxlength="100"
+                        required
+                    />
+                </label>
+
+                <label class="input input-sm w-full">
+                    <span class="label w-52">Nombre del Madre</span>
+                    <input
+                        type="text"
+                        id="registroMadreNombre"
+                        name="madre_nombre"
+                        maxlength="100"
+                        required
+                    />
+                </label>
+
+                <label class="input input-sm w-full">
+                    <span class="label w-52">Apellido del Madre</span>
+                    <input
+                        type="text"
+                        id="registroMadreApellido"
+                        name="madre_apellido"
+                        maxlength="100"
+                        required
+                    />
+                </label>
+            </fieldset>
+
+            <div class="mt-4">
+                <button
+                    type="submit"
+                    id="btnGuardarRegistro"
+                    class="btn btn-sm btn-primary btn-block"
+                >
+                    Guardar
+                </button>
+            </div>
+        </form>
+    </div>
 </dialog>

@@ -46,7 +46,7 @@
                             </svg>
                         </button>
                     </td>
-                    
+
                 </tr>
                 {% endfor %}
             {% else %}
@@ -74,7 +74,7 @@
                     hx-target="#tabla"
                     class="join-item btn btn-sm">«</a>
                 {% endif %}
-    
+
                 {% for num in lista_personas.paginator.page_range %}
                 {% if lista_personas.number == num %}
                     <button class="join-item btn btn-soft btn-sm btn-primary">{{ num }}</button>
@@ -84,7 +84,7 @@
                     class="join-item btn btn-sm">{{ num }}</a>
                 {% endif %}
                 {% endfor %}
-    
+
                 {% if lista_personas.has_next %}
                 <a hx-get="{% url 'tabla_personas' %}?page={{ lista_personas.next_page_number }}&q={{ filtro }}&limit={{ lista_personas.paginator.per_page }}"
                     hx-target="#tabla"
@@ -93,6 +93,4 @@
             </div>
         </div>
     {% endif %}
-
-
   </div>

@@ -25,6 +25,7 @@
 {% include 'components/registros/modal_detalle.html' %}
 {% include 'components/registros/modal_eliminar_bautismo.html' %}
 {% include 'components/registros/modal_eliminar_comunion.html' %}
+{% include 'components/registros/modal_eliminar_confirmacion.html' %}
 {% include 'components/modal_cerrar_sesion.html' %}
 
 </main>
@@ -40,6 +41,8 @@
         const eliminarBautismoURL = '{% url "eliminar_bautismo" 0 %}';
         const guardarComunionURL = '{% url "guardar_comunion" %}';
         const eliminarComunionURL = '{% url "eliminar_comunion" 0 %}';
+        const guardarConfirmacionURL = '{% url "guardar_confirmacion" %}';
+        const eliminarConfirmacionURL = '{% url "eliminar_confirmacion" 0 %}';
         const csrfToken = '{{ csrf_token }}';
     </script>
     <script type="module" src="{% static 'js/registros_script.js' %}"></script>

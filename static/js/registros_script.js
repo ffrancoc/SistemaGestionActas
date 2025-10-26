@@ -10,6 +10,14 @@ import {
   showAlert,
 } from "./utils.js";
 
+function toggleTab(tabName, visible) {
+  const input = document.querySelector(`input[data-tab="${tabName}"]`);
+  const content = document.querySelector(`.tab-content[data-tab="${tabName}"]`);
+
+  if (input) input.style.display = visible ? "" : "none";
+  if (content) content.style.display = visible ? "" : "none";
+}
+
 /*######################################################################################## */
 /* Código para mostrar modal de detalles de registro */
 /*######################################################################################## */
@@ -53,9 +61,9 @@ function mostrarRegistroDetalles(registroId) {
         setInnerContent("genero", genero);
 
         if ("bautismo" in data.data) {
-          const fechaBautismo = dateTimeToString(
-            data.data.bautismo.fecha_bautismo,
-          );
+          toggleTab("bautismo", true);
+
+          const fechaBautismo = dateToString(data.data.bautismo.fecha_bautismo);
           const padrino2Bautismo = getOrDefault(data.data.bautismo.padrino_2);
           const noLibroBautismo = getOrDefault(data.data.bautismo.no_libro);
           const noFolioBautismo = getOrDefault(data.data.bautismo.no_folio);
@@ -87,6 +95,7 @@ function mostrarRegistroDetalles(registroId) {
             fechaModificacionBautismo,
           );
         } else {
+          toggleTab("bautismo", false);
           setInnerContent("noLibroBautismoDetalle", "");
           setInnerContent("noFolioBautismoDetalle", "");
           setInnerContent("noActaBautismoDetalle", "");
@@ -100,9 +109,8 @@ function mostrarRegistroDetalles(registroId) {
         }
 
         if ("comunion" in data.data) {
-          const fechaComunion = dateTimeToString(
-            data.data.comunion.fecha_comunion,
-          );
+          toggleTab("comunion", true);
+          const fechaComunion = dateToString(data.data.comunion.fecha_comunion);
           const noLibroComunion = getOrDefault(data.data.comunion.no_libro);
           const noFolioComunion = getOrDefault(data.data.comunion.no_folio);
           const noActaComunion = getOrDefault(data.data.comunion.no_acta);
@@ -130,6 +138,7 @@ function mostrarRegistroDetalles(registroId) {
             fechaModificacionComunion,
           );
         } else {
+          toggleTab("comunion", false);
           setInnerContent("noLibroComunionDetalle", "");
           setInnerContent("noFolioComunionDetalle", "");
           setInnerContent("noActaComunionDetalle", "");
@@ -138,6 +147,73 @@ function mostrarRegistroDetalles(registroId) {
           setInnerContent("parrocoComunionDetalle", "");
           setInnerContent("fechaCreacionComunionDetalle", "");
           setInnerContent("fechaModificacionComunionDetalle", "");
+        }
+
+        if ("confirmacion" in data.data) {
+          toggleTab("confirmacion", true);
+
+          const fechaConfirmacion = dateToString(
+            data.data.confirmacion.fecha_confirmacion,
+          );
+          const noLibroConfirmacion = getOrDefault(
+            data.data.confirmacion.no_libro,
+          );
+          const noFolioConfirmacion = getOrDefault(
+            data.data.confirmacion.no_folio,
+          );
+          const noActaConfirmacion = getOrDefault(
+            data.data.confirmacion.no_acta,
+          );
+          const obispoConfirmacion = data.data.confirmacion.obispo;
+          const parrocoConfirmacion = data.data.confirmacion.parroco;
+          const padrinoConfirmacion = data.data.confirmacion.padrino;
+          const parroquiaConfirmacion =
+            data.data.confirmacion.parroquia_confirmacion;
+          const fechaCreacionConfirmacion = dateTimeToString(
+            data.data.confirmacion.creacion,
+          );
+          const fechaModificacionConfirmacion = dateTimeToString(
+            data.data.confirmacion.modificacion,
+          );
+
+          setInnerContent("noLibroConfirmacionDetalle", noLibroConfirmacion);
+          setInnerContent("noFolioConfirmacionDetalle", noFolioConfirmacion);
+          setInnerContent("noActaConfirmacionDetalle", noActaConfirmacion);
+          setInnerContent(
+            "parroquiaConfirmacionDetalle",
+            parroquiaConfirmacion,
+          );
+          setInnerContent("fechaConfirmacionDetalle", fechaConfirmacion);
+          setInnerContent("obispoConfirmacionDetalle", obispoConfirmacion);
+          setInnerContent("parrocoConfirmacionDetalle", parrocoConfirmacion);
+          setInnerContent("padrinoConfirmacionDetalle", padrinoConfirmacion);
+          setInnerContent(
+            "fechaCreacionConfirmacionDetalle",
+            fechaCreacionConfirmacion,
+          );
+          setInnerContent(
+            "fechaModificacionConfirmacionDetalle",
+            fechaModificacionConfirmacion,
+          );
+        } else {
+          toggleTab("confirmacion", false);
+
+          setInnerContent("noLibroConfirmacionDetalle", "");
+          setInnerContent("noFolioConfirmacionDetalle", "");
+          setInnerContent("noActaConfirmacionDetalle", "");
+          setInnerContent("parroquiaConfirmacionDetalle", "");
+          setInnerContent("fechaConfirmacionDetalle", "");
+          setInnerContent("obispoConfirmacionDetalle", "");
+          setInnerContent("parrocoConfirmacionDetalle", "");
+          setInnerContent("padrinoConfirmacionDetalle", "");
+          setInnerContent("fechaCreacionConfirmacionDetalle", "");
+          setInnerContent("fechaModificacionConfirmacionDetalle", "");
+        }
+
+        if ("matrimonio" in data.data) {
+          toggleTab("matrimonio", true);
+        } else {
+          toggleTab("matrimonio", false);
         }
 
         const modalDetallePersona = getItemById("modalRegistroDetalle");
@@ -193,7 +269,10 @@ function mostrarModificarRegistro(button) {
         const modalGuardarRegistro = getItemById("modalGuardarRegistro");
         modalGuardarRegistro.dataset.registroId = registroId;
 
-        setInnerContent("modalGuardarRegistroTitulo", "Modificar Registro");
+        getItemById("modificarIcon").style.display = "block";
+        getItemById("registrarIcon").style.display = "none";
+
+        setInnerContent("modalGuardarRegistroTitulo", "Modificar");
         setInnerContent("btnGuardarRegistro", "Actualizar");
         modalGuardarRegistro.showModal();
       }
@@ -256,7 +335,10 @@ window.eliminarRegistro = eliminarRegistro;
 
 function mostrarGuardarRegistro() {
   const modalGuardarRegistro = getItemById("modalGuardarRegistro");
-  setInnerContent("modalGuardarRegistroTitulo", "Nuevo Registro");
+  getItemById("modificarIcon").style.display = "none";
+  getItemById("registrarIcon").style.display = "block";
+
+  setInnerContent("modalGuardarRegistroTitulo", "Nuevo");
   setInnerContent("btnGuardarRegistro", "Guardar");
   modalGuardarRegistro.showModal();
 }

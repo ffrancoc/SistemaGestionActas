@@ -1,5 +1,5 @@
 <dialog id="modalRegistroDetalle" class="modal">
-    <div class="modal-box w-11/12">
+    <div class="modal-box w-11/12 bg-base-200">
         <form method="dialog">
             <button
                 class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
@@ -7,9 +7,25 @@
                 ✕
             </button>
         </form>
-        <h3 class="text-lg font-bold mb-4">Detalles</h3>
 
-        <div class="tabs tabs-border tabs-bottom tabs-xs">
+        <div class="flex gap-2 items-center">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                class="size-5"
+            >
+                <path
+                    fill-rule="evenodd"
+                    d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a.75.75 0 0 0 0 1.5h.253a.25.25 0 0 1 .244.304l-.459 2.066A1.75 1.75 0 0 0 10.747 15H11a.75.75 0 0 0 0-1.5h-.253a.25.25 0 0 1-.244-.304l.459-2.066A1.75 1.75 0 0 0 9.253 9H9Z"
+                    clip-rule="evenodd"
+                />
+            </svg>
+
+            <h3 class="text-lg font-semibold">Detalles</h3>
+        </div>
+
+        <div class="tabs tabs-box border-0 tabs-bottom tabs-xs">
             <input
                 type="radio"
                 name="tab_registro_detalle"
@@ -50,11 +66,11 @@
                                 <td id="infoPadre"></td>
                             </tr>
                             <tr>
-                                <th class="text-left">Fecha de Creación</th>
+                                <th class="text-left">Creación</th>
                                 <td id="fechaCreacion"></td>
                             </tr>
                             <tr>
-                                <th class="text-left">Fecha de Modificación</th>
+                                <th class="text-left">Modificación</th>
                                 <td id="fechaModificacion"></td>
                             </tr>
                         </tbody>
@@ -67,8 +83,12 @@
                 name="tab_registro_detalle"
                 class="tab"
                 aria-label="Bautismo"
+                data-tab="bautismo"
             />
-            <div class="tab-content bg-base-100 border-base-300 p-6">
+            <div
+                class="tab-content bg-base-100 border-base-300 p-6"
+                data-tab="bautismo"
+            >
                 <div class="overflow-x-auto">
                     <table class="table table-xs w-full">
                         <tbody>
@@ -85,11 +105,11 @@
                                 <td id="noActaBautismoDetalle"></td>
                             </tr>
                             <tr>
-                                <th class="text-left">Parroquia Bautismo</th>
+                                <th class="text-left">Parroquia</th>
                                 <td id="parroquiaBautismoDetalle"></td>
                             </tr>
                             <tr>
-                                <th class="text-left">Fecha Bautismo</th>
+                                <th class="text-left">Fecha</th>
                                 <td id="fechaBautismoDetalle"></td>
                             </tr>
                             <tr>
@@ -105,11 +125,11 @@
                                 <td id="padrino2BautismoDetalle"></td>
                             </tr>
                             <tr>
-                                <th class="text-left">Fecha de Creación</th>
+                                <th class="text-left">Creación</th>
                                 <td id="fechaCreacionBautismoDetalle"></td>
                             </tr>
                             <tr>
-                                <th class="text-left">Fecha de Modificación</th>
+                                <th class="text-left">Modificación</th>
                                 <td id="fechaModificacionBautismoDetalle"></td>
                             </tr>
                         </tbody>
@@ -122,8 +142,12 @@
                 name="tab_registro_detalle"
                 class="tab"
                 aria-label="Comunión"
+                data-tab="comunion"
             />
-            <div class="tab-content bg-base-100 border-base-300 p-6">
+            <div
+                class="tab-content bg-base-100 border-base-300 p-6"
+                data-tab="comunion"
+            >
                 <div class="overflow-x-auto">
                     <table class="table table-xs w-full">
                         <tbody>
@@ -140,23 +164,23 @@
                                 <td id="noActaComunionDetalle"></td>
                             </tr>
                             <tr>
-                                <th class="text-left">Parroquia Comunión</th>
+                                <th class="text-left">Parroquia</th>
                                 <td id="parroquiaComunionDetalle"></td>
                             </tr>
                             <tr>
-                                <th class="text-left">Fecha Comunion</th>
+                                <th class="text-left">Fecha</th>
                                 <td id="fechaComunionDetalle"></td>
                             </tr>
                             <tr>
-                                <th class="text-left">Parroco</th>
+                                <th class="text-left">Párroco</th>
                                 <td id="parrocoComunionDetalle"></td>
                             </tr>
                             <tr>
-                                <th class="text-left">Fecha de Creación</th>
+                                <th class="text-left">Creación</th>
                                 <td id="fechaCreacionComunionDetalle"></td>
                             </tr>
                             <tr>
-                                <th class="text-left">Fecha de Modificación</th>
+                                <th class="text-left">Modificación</th>
                                 <td id="fechaModificacionComunionDetalle"></td>
                             </tr>
                         </tbody>
@@ -169,9 +193,60 @@
                 name="tab_registro_detalle"
                 class="tab"
                 aria-label="Confirmación"
+                data-tab="confirmacion"
             />
-            <div class="tab-content bg-base-100 border-base-300 p-6">
-                Tab content 3
+            <div
+                class="tab-content bg-base-100 border-base-300 p-6"
+                data-tab="confirmacion"
+            >
+                <div class="overflow-x-auto">
+                    <table class="table table-xs w-full">
+                        <tbody>
+                            <tr>
+                                <th class="text-left w-1/3">No. Libro</th>
+                                <td id="noLibroConfirmacionDetalle"></td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">No. Folio</th>
+                                <td id="noFolioConfirmacionDetalle"></td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">No. Acta</th>
+                                <td id="noActaConfirmacionDetalle"></td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">Parroquia</th>
+                                <td id="parroquiaConfirmacionDetalle"></td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">Fecha</th>
+                                <td id="fechaConfirmacionDetalle"></td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">Obispo</th>
+                                <td id="obispoConfirmacionDetalle"></td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">Párroco</th>
+                                <td id="parrocoConfirmacionDetalle"></td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">Padrino/Madrina</th>
+                                <td id="padrinoConfirmacionDetalle"></td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">Creación</th>
+                                <td id="fechaCreacionConfirmacionDetalle"></td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">Modificación</th>
+                                <td
+                                    id="fechaModificacionConfirmacionDetalle"
+                                ></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <input
@@ -179,8 +254,12 @@
                 name="tab_registro_detalle"
                 class="tab"
                 aria-label="Matrimonio"
+                data-tab="matrimonio"
             />
-            <div class="tab-content bg-base-100 border-base-300 p-6">
+            <div
+                class="tab-content bg-base-100 border-base-300 p-6"
+                data-tab="matrimonio"
+            >
                 Tab content 3
             </div>
         </div>

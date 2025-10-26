@@ -1,8 +1,6 @@
 import {
   getItemById,
   setValueContent,
-  dateToString,
-  formatDateForInput,
   getOrDefault,
   showAlert,
 } from "./utils.js";
@@ -13,6 +11,8 @@ modalActasRegistro.addEventListener("close", () => {
   getItemById("registroIdBautismo").value = "";
   getItemById("formActaComunion").reset();
   getItemById("registroIdComunion").value = "";
+  getItemById("formActaConfirmacion").reset();
+  getItemById("registroIdConfirmacion").value = "";
 });
 
 /*######################################################################################## */
@@ -116,6 +116,68 @@ function mostrarActasRegistro(button) {
           btnComunionGuardar.classList.remove("hidden");
           btnComunionModificar.classList.add("hidden");
           btnComunionEliminar.classList.add("hidden");
+        }
+
+        setValueContent("registroIdConfirmacion", data.data.registro.id);
+        setValueContent(
+          "registroConfirmacion",
+          data.data.registro.nombre + " " + data.data.registro.apellido,
+        );
+
+        if ("confirmacion" in data.data) {
+          const btnConfirmacionGuardar = getItemById("btnConfirmacionGuardar");
+          const btnConfirmacionModificar = getItemById(
+            "btnConfirmacionModificar",
+          );
+          const btnConfirmacionEliminar = getItemById(
+            "btnConfirmacionEliminar",
+          );
+
+          btnConfirmacionEliminar.dataset.confirmacionId =
+            data.data.confirmacion.id;
+
+          const noLibro = getOrDefault(data.data.confirmacion.no_libro, "");
+          const noFolio = getOrDefault(data.data.confirmacion.no_folio, "");
+          const noActa = getOrDefault(data.data.confirmacion.no_acta, "");
+          const parroquiaConfirmacion = getOrDefault(
+            data.data.confirmacion.parroquia_confirmacion,
+            "",
+          );
+          const fechaConfirmacion = getOrDefault(
+            data.data.confirmacion.fecha_confirmacion,
+            "",
+          );
+
+          const obispoConfirmacion = getOrDefault(
+            data.data.confirmacion.obispo,
+            "",
+          );
+          const parrocoConfirmacion = getOrDefault(
+            data.data.confirmacion.parroco,
+            "",
+          );
+
+          const padrinoConfirmacion = getOrDefault(
+            data.data.confirmacion.padrino,
+            "",
+          );
+
+          setValueContent("noLibroConfirmacion", noLibro);
+          setValueContent("noFolioConfirmacion", noFolio);
+          setValueContent("noActaConfirmacion", noActa);
+          setValueContent("parroquiaConfirmacion", parroquiaConfirmacion);
+          setValueContent("fechaConfirmacion", fechaConfirmacion);
+          setValueContent("obispoConfirmacion", obispoConfirmacion);
+          setValueContent("parrocoConfirmacion", parrocoConfirmacion);
+          setValueContent("padrinoConfirmacion", padrinoConfirmacion);
+
+          btnConfirmacionGuardar.classList.add("hidden");
+          btnConfirmacionModificar.classList.remove("hidden");
+          btnConfirmacionEliminar.classList.remove("hidden");
+        } else {
+          btnConfirmacionGuardar.classList.remove("hidden");
+          btnConfirmacionModificar.classList.add("hidden");
+          btnConfirmacionEliminar.classList.add("hidden");
         }
 
         const modalActasRegistro = getItemById("modalActasRegistro");
@@ -298,3 +360,90 @@ function eliminarComunion() {
 }
 
 window.eliminarComunion = eliminarComunion;
+
+/*######################################################################################## */
+/* Código para modificar información en la base de datos */
+/*######################################################################################## */
+const formActaConfirmacion = getItemById("formActaConfirmacion");
+formActaConfirmacion.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const formData = new FormData(formActaConfirmacion);
+  const data = Object.fromEntries(formData.entries());
+
+  fetch(guardarConfirmacionURL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": csrfToken,
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status === "ok") {
+        const modalActasRegistro = getItemById("modalActasRegistro");
+        modalActasRegistro.close();
+
+        htmx.ajax("GET", tablaRegistrosURL, {
+          target: "#tabla",
+          swap: "innerHTML",
+        });
+
+        showAlert(data.data, "success");
+      } else {
+        showAlert(data.data, "error");
+      }
+    })
+    .catch((error) => {
+      showAlert(error, "error");
+    });
+});
+
+/*######################################################################################## */
+/* Código mostrar modal de eliminar bautismo */
+/*######################################################################################## */
+
+function mostrarEliminarConfirmacion(button) {
+  const modalEliminarConfirmacion = getItemById("modalEliminarConfirmacion");
+  modalEliminarConfirmacion.showModal();
+}
+
+window.mostrarEliminarConfirmacion = mostrarEliminarConfirmacion;
+
+/*######################################################################################## */
+/* Código para eliminar información en la base de datos */
+/*######################################################################################## */
+
+function eliminarConfirmacion() {
+  const modalEliminarConfirmacion = getItemById("modalEliminarConfirmacion");
+  const btnConfirmacionEliminar = getItemById("btnConfirmacionEliminar");
+  const confirmacionId = btnConfirmacionEliminar.dataset.confirmacionId;
+
+  const url = eliminarConfirmacionURL.replace(
+    "/0/",
+    "/" + confirmacionId + "/",
+  );
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status === "ok") {
+        modalEliminarConfirmacion.close();
+        htmx.ajax("GET", tablaRegistrosURL, {
+          target: "#tabla",
+          swap: "innerHTML",
+        });
+
+        getItemById("modalActasRegistro").close();
+        showAlert(data.data, "success");
+      } else {
+        showAlert(data.data, "error");
+      }
+    })
+    .catch((error) => {
+      showAlert(error, "error");
+    });
+}
+
+window.eliminarConfirmacion = eliminarConfirmacion;
