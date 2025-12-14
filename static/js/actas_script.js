@@ -3,6 +3,7 @@ import {
   setValueContent,
   getOrDefault,
   showAlert,
+  setInnerContent,
 } from "./utils.js";
 
 const modalActasRegistro = getItemById("modalActasRegistro");
@@ -178,6 +179,64 @@ function mostrarActasRegistro(button) {
           btnConfirmacionGuardar.classList.remove("hidden");
           btnConfirmacionModificar.classList.add("hidden");
           btnConfirmacionEliminar.classList.add("hidden");
+        }
+
+
+        setValueContent("registroIdMatrimonio", data.data.registro.id);
+        setValueContent(
+          "contrayente1Matrimonio",
+          data.data.registro.nombre + " " + data.data.registro.apellido,
+        );
+        if(data.data.registro.genero.toLowerCase() === "masculino"){
+          setInnerContent("contrayente1MatrimonioLabel", "Contrayente");
+          setInnerContent("contrayente2MatrimonioLabel", "Contrayenta");
+        }else{
+          setInnerContent("contrayente1MatrimonioLabel", "Contrayenta");
+          setInnerContent("contrayente2MatrimonioLabel", "Contrayente");
+        }
+
+        if ("matrimonio" in data.data) {
+          const btnMatrimonioGuardar = getItemById("btnMatrimonioGuardar");
+          const btnMatrimonioModificar = getItemById("btnMatrionioModificar");
+          const btnMatrimonioEliminar = getItemById("btnMatrimonioEliminar");
+
+          btnMatrimonioEliminar.dataset.matrimonioId = data.data.matrimonio.id;
+
+          const noLibro = getOrDefault(data.data.matrimonio.no_libro, "");
+          const noFolio = getOrDefault(data.data.matrimonio.no_folio, "");
+          const noActa = getOrDefault(data.data.matrimonio.no_acta, "");
+          const parroquiaMatrimonio = getOrDefault(
+            data.data.matrimonio.parroquia_matrimonio,
+            "",
+          );
+          const fechaMatrimonio = getOrDefault(
+            data.data.matrimonio.fecha_matrimonio,
+            "",
+          );
+
+          const parrocoMatrimonio = getOrDefault(
+            data.data.matrimonio.parroco,
+            "",
+          );
+
+
+          setValueContent("noLibroMatrimonio", noLibro);
+          setValueContent("noFolioMatrimonio", noFolio);
+          setValueContent("noActaMatrimonio", noActa);
+          setValueContent("parroquiaMatrimonio", parroquiaMatrimonio);
+          setValueContent("fechaMatrimonio", fechaMatrimonio);
+          setValueContent("parrocoMatrimonio", parrocoMatrimonio);
+
+          btnMatrimonioGuardar.classList.add("hidden");
+          btnMatrimonioModificar.classList.remove("hidden");
+          btnMatrimonioEliminar.classList.remove("hidden");
+        } else {
+          console.log("MOstrar informacion de Matrimonio");
+
+
+          btnMatrimonioGuardar.classList.remove("hidden");
+          btnMatrimonioModificar.classList.add("hidden");
+          btnMatrimonioEliminar.classList.add("hidden");
         }
 
         const modalActasRegistro = getItemById("modalActasRegistro");

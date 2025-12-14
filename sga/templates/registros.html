@@ -26,16 +26,19 @@
 {% include 'components/registros/modal_eliminar_bautismo.html' %}
 {% include 'components/registros/modal_eliminar_comunion.html' %}
 {% include 'components/registros/modal_eliminar_confirmacion.html' %}
+{% include 'components/registros/modal_contrayente.html' %}
 {% include 'components/modal_cerrar_sesion.html' %}
 
 </main>
 {% endblock %}
 {% block scripts %}
     <script>
+        const contrayentesURL = '{% url "contrayentes" %}';
         const detalleRegistroURL = '{% url "detalle_registro" 0 %}';
         const guardarRegistroURL = '{% url "guardar_registro" %}';
         const eliminarRegistroURL = '{% url "eliminar_registro" 0 %}';
         const detalleActasURL = '{% url "detalle_actas" 0 %}';
+        const tablaContrayentesURL = '{% url "tabla_contrayentes" %}';
         const tablaRegistrosURL = '{% url "tabla_registros" %}';
         const guardarBautismoURL = '{% url "guardar_bautismo" %}';
         const eliminarBautismoURL = '{% url "eliminar_bautismo" 0 %}';

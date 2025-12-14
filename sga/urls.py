@@ -9,6 +9,7 @@ urlpatterns = [
     path("sga/auth/logout/", views.cerrar_sesion, name="cerrar_sesion"),
     path("sga/home/", views.mostrar_home, name="mostrar_home"),
     path("sga/registros/", views.mostrar_registros, name="mostrar_registros"),
+    path("sga/registros/contrayentes", views.registros_contrayente, name="contrayentes"),
     path("sga/registros/tabla/", views.tabla_registros, name="tabla_registros"),
     path("sga/registro/guardar/", views.guardar_registro, name="guardar_registro"),
     path(
@@ -55,4 +56,5 @@ urlpatterns = [
         views.eliminar_confirmacion,
         name="eliminar_confirmacion",
     ),
+    path("sga/contrayentes/tabla/", views.tabla_contrayentes, name="tabla_contrayentes"),
 ]

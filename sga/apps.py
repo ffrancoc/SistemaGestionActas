@@ -4,3 +4,6 @@ from django.apps import AppConfig
 class SgaConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'sga'
+
+    def ready(self):
+        import sga.signals

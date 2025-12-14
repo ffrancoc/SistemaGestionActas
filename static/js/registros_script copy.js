@@ -389,7 +389,7 @@ formRegistro.addEventListener("submit", function (event) {
 });
 
 
-function mostrarModalContrayente() {
+function mostrarModalContrayente(){
   const modalContrayente = getItemById("modalContrayente");
   const id = getItemById("registroIdMatrimonio").value;
 
@@ -398,57 +398,45 @@ function mostrarModalContrayente() {
   modalContrayenteTitle.innerText = "Seleccionar " + contrayenteLabel.innerText;
 
 
-  let url = tablaContrayentesURL;
-  if(id){
-    url += "?id=" + id;
-  }
-  const tabla = getItemById("tabla2");
-  tabla.setAttribute("hx-get", url);
-  htmx.ajax("GET", url, {target: tabla});
+  fetch(contrayentesURL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": csrfToken,
+    },
+    body: JSON.stringify({
+      registro_id: id
+    }),
+  }).then((response) => response.json()).then((data) => {
+    const tbody = getItemById("contrayenteTableBody");
+    tbody.innerHTML = "";
+
+    data.results.forEach(item => {
+      const tr = document.createElement("tr");
+      const tdRadio = document.createElement("td");
+      const radio = document.createElement("input");
+      radio.type = "radio";
+      radio.name = "contrayente"; // mismo name => single select
+      radio.value = item.id;
+      radio.classList.add("radio");
+      tdRadio.appendChild(radio);
+
+      // celda con texto
+      const tdText = document.createElement("td");
+      tdText.textContent = item.text;
+
+      // agregar celdas a la fila
+      tr.appendChild(tdRadio);
+      tr.appendChild(tdText);
 
 
+      tbody.appendChild(tr);
+    });
 
-  //   fetch(contrayentesURL, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "X-CSRFToken": csrfToken,
-  //     },
-  //     body: JSON.stringify({
-  //       registro_id: id
-  //     }),
-  //   }).then((response) => response.json()).then((data) => {
-  //     const tbody = getItemById("contrayenteTableBody");
-  //     tbody.innerHTML = "";
-
-  //     data.results.forEach(item => {
-  //       const tr = document.createElement("tr");
-  //       const tdRadio = document.createElement("td");
-  //       const radio = document.createElement("input");
-  //       radio.type = "radio";
-  //       radio.name = "contrayente"; // mismo name => single select
-  //       radio.value = item.id;
-  //       radio.classList.add("radio");
-  //       tdRadio.appendChild(radio);
-
-  //       // celda con texto
-  //       const tdText = document.createElement("td");
-  //       tdText.textContent = item.text;
-
-  //       // agregar celdas a la fila
-  //       tr.appendChild(tdRadio);
-  //       tr.appendChild(tdText);
+    //console.log(data);
+  })
 
 
-  //       tbody.appendChild(tr);
-  //     });
-
-  //     //console.log(data);
-  //   })
-
-
-  //   modalContrayente.showModal();
-  // }
   modalContrayente.showModal();
 }
 
@@ -465,6 +453,9 @@ function seleccionarContrayente(){
     fetch(url).then((response) => response.json()).then(data => {
       setValueContent("idContrayente2Matrimonio", data.data.id);
       setValueContent("contrayente2Matrimonio", data.data.nombre +" "+ data.data.apellido);
+
+
+      console.log("HOLA MUNDO");
 
       const modalContrayente = getItemById("modalContrayente");
       modalContrayente.close();

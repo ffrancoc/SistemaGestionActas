@@ -1,0 +1,33 @@
+<dialog id="modalContrayente" class="modal">
+  <div class="modal-box">
+      <form method="dialog">
+          <button
+              class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+          >
+              ✕
+          </button>
+      </form>
+
+    <h3 class="font-bold text-lg" id="modalContrayenteTitle">Seleccionar Contrayente</h3>
+
+    <div class="overflow-x-auto">
+      <table class="table table-sm table-bordered border border-base-300 w-full">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="contrayenteTableBody">
+
+        </tbody>
+      </table>
+    </div>
+
+
+
+    <div class="modal-action">
+      <button  type="button" class="btn btn-sm" onclick="seleccionarContrayente()">Seleccionar</>
+    </div>
+  </div>
+</dialog>

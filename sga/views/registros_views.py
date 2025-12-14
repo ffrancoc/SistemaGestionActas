@@ -7,7 +7,110 @@ from django.shortcuts import render
 from ..utils import json_response
 from django.utils import timezone
 from django.db.models import Q
+from datetime import date
 import json
+
+
+@login_required
+@require_POST
+def registros_contrayente(request):
+    data = json.loads(request.body)
+    registro_id = data.get("registro_id")
+
+    hoy = date.today()
+    fecha_limite = hoy.replace(year=hoy.year - 18)
+
+
+    qs = Registro.objects.filter(
+        fecha_nacimiento__lte=fecha_limite,
+        bautismos__isnull=False,
+        comuniones__isnull=False,
+        confirmaciones__isnull=False
+    )
+
+    if registro_id:
+        try:
+            registro = Registro.objects.get(id=registro_id)
+            if registro.genero == "Masculino":
+                qs = qs.filter(genero="Femenino")
+            elif registro.genero == "Femenino":
+                qs = qs.filter(genero="Masculino")
+
+            qs = qs.exclude(id=registro.id)
+        except Registro.DoesNotExist:
+            pass  # si no existe, no aplica filtro
+
+
+    results = [{"id": p.id, "text": f"{p.nombre} {p.apellido}"} for p in qs]
+    return JsonResponse({"results": results})
+
+
+@login_required
+@require_GET
+def tabla_contrayentes(request):
+    registro_id = request.GET.get("id")
+    filtro = request.GET.get("q", "").strip()
+    pagina = int(request.GET.get("page", 1))
+    por_pagina = int(request.GET.get("limit", 8))
+
+    hoy = date.today()
+    fecha_limite = hoy.replace(year=hoy.year - 18)
+
+    registros = Registro.objects.filter(
+        fecha_nacimiento__lte=fecha_limite,
+        bautismos__isnull=False,
+        comuniones__isnull=False,
+        confirmaciones__isnull=False
+    ).order_by("-creacion")
+
+    if registro_id:
+        try:
+            registro = Registro.objects.get(id=registro_id)
+
+            # 🔑 Validar que el propio registro tenga sacramentos
+            if (
+                not hasattr(registro, "bautismos")
+                or not hasattr(registro, "comuniones")
+                or not hasattr(registro, "confirmaciones")
+            ):
+                # si no tiene alguno, no mostrar nada
+                registros = Registro.objects.none()
+            else:
+                # aplicar lógica de género
+                if registro.genero == "Masculino":
+                    registros = registros.filter(genero="Femenino")
+                elif registro.genero == "Femenino":
+                    registros = registros.filter(genero="Masculino")
+
+                registros = registros.exclude(id=registro.id)
+
+        except Registro.DoesNotExist:
+            pass
+            #registros = Registro.objects.none()
+
+    if filtro:
+        registros = registros.filter(
+            Q(nombre__icontains=filtro)
+            | Q(apellido__icontains=filtro)
+            | Q(lugar_nacimiento__icontains=filtro)
+            | Q(parroquia_pertenencia__icontains=filtro)
+            | Q(fecha_nacimiento__icontains=filtro)
+            | Q(padre_nombre__icontains=filtro)
+            | Q(padre_apellido__icontains=filtro)
+            | Q(madre_nombre__icontains=filtro)
+            | Q(madre_apellido__icontains=filtro)
+            | Q(lugar_nacimiento__icontains=filtro)
+        )
+
+    paginador = Paginator(registros, por_pagina)
+    pagina_obj = paginador.get_page(pagina)
+
+    return render(
+        request,
+        "components/registros/listar_tabla_contrayente.html",
+        {"registros": pagina_obj, "filtro": filtro},
+    )
+
 
 
 @login_required

@@ -165,21 +165,21 @@
                         <button
                             id="btnBautismoGuardar"
                             type="submit"
-                            class="btn btn-sm btn-primary"
+                            class="btn btn-sm btn-primary flex-grow"
                         >
                             Guardar
                         </button>
                         <button
                             id="btnBautismoModificar"
                             type="submit"
-                            class="btn btn-sm btn-primary flex-grow"
+                            class="btn btn-sm btn-soft flex-grow"
                         >
                             Actualizar
                         </button>
                         <button
                             id="btnBautismoEliminar"
                             type="button"
-                            class="btn btn-sm btn-error flex-grow"
+                            class="btn btn-sm btn-soft flex-grow"
                             onclick="mostrarEliminarBautismo(this)"
                         >
                             Eliminar
@@ -303,21 +303,21 @@
                         <button
                             id="btnComunionGuardar"
                             type="submit"
-                            class="btn btn-sm btn-primary"
+                            class="btn btn-sm btn-soft flex-grow"
                         >
                             Guardar
                         </button>
                         <button
                             id="btnComunionModificar"
                             type="submit"
-                            class="btn btn-sm btn-primary flex-grow"
+                            class="btn btn-sm btn-soft flex-grow"
                         >
                             Actualizar
                         </button>
                         <button
                             id="btnComunionEliminar"
                             type="button"
-                            class="btn btn-sm btn-error flex-grow"
+                            class="btn btn-sm btn-soft flex-grow"
                             onclick="mostrarEliminarComunion(this)"
                         >
                             Eliminar
@@ -470,14 +470,14 @@
                         <button
                             id="btnConfirmacionModificar"
                             type="submit"
-                            class="btn btn-sm btn-primary flex-grow"
+                            class="btn btn-sm btn-soft flex-grow"
                         >
                             Actualizar
                         </button>
                         <button
                             id="btnConfirmacionEliminar"
                             type="button"
-                            class="btn btn-sm btn-error flex-grow"
+                            class="btn btn-sm btn-soft flex-grow"
                             onclick="mostrarEliminarConfirmacion(this)"
                         >
                             Eliminar
@@ -492,7 +492,186 @@
                 class="tab"
                 aria-label="Matrimonio"
             />
-            <div class="tab-content p-6">Tab content 3</div>
+            <div class="tab-content p-6">
+                <form id="formActaConfirmacion">
+                    <fieldset class="fieldset w-full p-4">
+                        <legend class="fieldset-legend"></legend>
+
+                        <input
+                            type="text"
+                            id="registroIdMatrimonio"
+                            name="registro_id"
+                            maxlength="100"
+                            hidden
+                            readonly
+                        />
+
+                        <label class="input input-sm w-full">
+                            <span class="label w-32" id="contrayente1MatrimonioLabel">Contrayente</span>
+                            <input
+                                type="text"
+                                id="contrayente1Matrimonio"
+                                name="contrayente1"
+                                maxlength="100"
+                                readonly
+                                required
+                            />
+                        </label>
+
+                        <input id="idContrayente2Matrimonio" readonly>
+                        <div class="join w-full">
+                          <div class="w-full">
+                            <div>
+                                <label class="input input-sm join-item w-full">
+                                    <span class="label w-32" id="contrayente2MatrimonioLabel">Contrayente</span>
+                                    <input
+                                        type="text"
+                                        id="contrayente2Matrimonio"
+                                        name="contrayente2"
+                                        maxlength="100"
+                                        readonly
+                                        required
+                                    />
+                                </label>
+                            </div>
+                          </div>
+                          <div class="indicator">
+                            <button class="btn btn-sm join-item" type="button" onclick="mostrarModalContrayente()">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                                    <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                          </div>
+                        </div>
+
+                        <label class="input input-sm w-full">
+                            <span class="label w-32">No. Libro</span>
+                            <input
+                                type="text"
+                                id="noLibroMatrimonio"
+                                name="no_libro"
+                                pattern="\d+"
+                                title="Formato inválido, ingrese solo números"
+                                maxlength="10"
+                            />
+                            <span class="badge badge-neutral badge-xs"
+                                >Opcional</span
+                            >
+                        </label>
+
+                        <label class="input input-sm w-full">
+                            <span class="label w-32">No. Folio</span>
+                            <input
+                                type="text"
+                                id="noFolioMatrimonio"
+                                name="no_folio"
+                                pattern="\d+"
+                                title="Formato inválido, ingrese solo números"
+                                maxlength="10"
+                            />
+                            <span class="badge badge-neutral badge-xs"
+                                >Opcional</span
+                            >
+                        </label>
+
+                        <label class="input input-sm w-full">
+                            <span class="label w-32">No. Acta</span>
+                            <input
+                                type="text"
+                                id="noActaMatrimonio"
+                                name="no_acta"
+                                pattern="\d+"
+                                title="Formato inválido, ingrese solo números"
+                                maxlength="10"
+                            />
+                            <span class="badge badge-neutral badge-xs"
+                                >Opcional</span
+                            >
+                        </label>
+
+                        <label class="input input-sm w-full">
+                            <span class="label w-32">Testigo 1</span>
+                            <input
+                                type="text"
+                                id="testigo1Matrimonio"
+                                name="testigo_1"
+                                maxlength="200"
+                                required
+                            />
+                        </label>
+
+                        <label class="input input-sm w-full">
+                            <span class="label w-32">Testigo 2</span>
+                            <input
+                                type="text"
+                                id="testigo2Matrimonio"
+                                name="testigo_2"
+                                maxlength="200"
+                                required
+                            />
+                        </label>
+
+                        <label class="input input-sm w-full">
+                            <span class="label w-32">Parroquia</span>
+                            <input
+                                type="text"
+                                id="parroquiaMatrimonio"
+                                name="parroquia_matrimonio"
+                                maxlength="100"
+                                required
+                            />
+                        </label>
+
+                        <label class="input input-sm w-full">
+                            <span class="label w-32">Fecha</span>
+                            <input
+                                type="date"
+                                id="fechaMatrimonio"
+                                name="fecha_matrimonio"
+                                maxlength="100"
+                                required
+                            />
+                        </label>
+
+                        <label class="input input-sm w-full">
+                            <span class="label w-32">Parroco</span>
+                            <input
+                                type="text"
+                                id="parrocoMatrimonio"
+                                name="parroco"
+                                maxlength="200"
+                                required
+                            />
+                        </label>
+
+                    </fieldset>
+
+                    <div class="mt-4 mb-8 px-4 flex gap-2 justify-end">
+                        <button
+                            id="btnMatrimonioGuardar"
+                            type="submit"
+                            class="btn btn-sm btn-primary flex-grow"
+                        >
+                            Guardar
+                        </button>
+                        <button
+                            id="btnMatrimonioModificar"
+                            type="submit"
+                            class="btn btn-sm btn-soft flex-grow"
+                        >
+                            Actualizar
+                        </button>
+                        <button
+                            id="btnMatrimonioEliminar"
+                            type="button"
+                            class="btn btn-sbtn-soft flex-grow"
+                            onclick=""
+                        >
+                            Eliminar
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </dialog>
